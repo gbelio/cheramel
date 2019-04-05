@@ -1,0 +1,44 @@
+.login {
+    padding: 2%;
+    display: flex;
+}
+.formulario {
+    justify-content: center;
+}
+
+.form{
+    width: 400px;
+}
+
+.sesion {
+    font-family: 'Satisfy';
+}
+h2 {
+    font-family: 'Satisfy';
+}
+.tipo {
+    font-family: 'Alegreya'; 
+}
+
+.btn-primary {
+    background-color: #b2dfdb;
+    border: 0;
+}
+.btn-primary1 {
+    background-color: #b2dfdb;
+    border: 0;
+    color: white;
+    width: 100px;
+}
+
+.preguntas {
+    padding: 4%;
+}
+
+.preguntas h1 {
+    font-size: 20px;
+}
+
+.preguntas img{
+    width: 40px;
+}
