@@ -17,14 +17,14 @@ if($_POST){
   <?php
     include_once("parts/head.php");
   ?>
-<body class="bodyregistro" >
-  <?php
-    include_once("parts/header.php");
-    include_once("parts/nav.php");
-    include_once("parts/mostrarErrores.php");
-    include_once("parts/registro.php");
-    include_once("parts/footer.php");
-    include_once("parts/scriptsBootstrap.php");
-  ?>
-</body>
+  <body class="bodyregistro" >
+    <?php
+      include_once("parts/header.php");
+      include_once("parts/nav.php");
+      include_once("parts/mostrarErrores.php");
+      include_once("parts/registro.php");
+      include_once("parts/footer.php");
+      include_once("parts/scriptsBootstrap.php");
+    ?>
+  </body>
 </html>
