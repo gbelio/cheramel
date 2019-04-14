@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/master.css">
     <link rel="stylesheet" href="css/estilos.css">
     <link href="https://fonts.googleapis.com/css?family=Alegreya+Sans|Satisfy" rel="stylesheet">
     <title>Preguntas Frecuentes</title>
@@ -50,7 +49,7 @@
       </ul>
     </div>
   </nav>
-<div class="preguntas">
+  <div class="preguntas">
   <div class="col-xs-12 col-md-12 col-lg-12">
      <h1>¿Qué formas de pago puedo aprovechar para realizar mi compra?</h1>
      <p>Disponemos de los siguientes medios de pago:</p>
@@ -81,7 +80,12 @@
      <br>
      <h1>¿Qué debo hacer si el producto no llega en buen estado?</h1>
      <p>Ponte en contacto con nosotros a info@cheramel.com y te enviaremos uno nuevo.</p>
-
+     <br>
+     <h1>No puedo acceder a mi cuenta, ¿qué hago?</h1>
+     <p>Si el motivo por el cual no podés acceder es  porque olvidaste o bloqueaste tu contraseña, deberás ingresar tu mail y hacer click en <a href="#">¿Olvidaste o bloqueaste tu contraseña?</a></p>
+     <br>
+     <h1>Mi cuenta está bloqueada, ¿cómo la habilito?</h1>
+     <p>Luego de cinco intentos fallidos de intentar ingresar a tu cuenta de Todo Pago tu contraseña será bloqueada y recibirás un correo con la opción de recuperarla. Deberás completar la pregunta de seguridad, ingresar una nueva clave y quedará restablecida.</p>
   </div>
 </div>
 <footer>

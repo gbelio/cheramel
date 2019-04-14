@@ -5,6 +5,8 @@
 a:hover{
   text-decoration: none;
   color: black;
+  transition: 1s;
+  text-shadow: black 0px 0px 5px;
 }
 .ico{
   display: flex;
@@ -58,7 +60,7 @@ img {
 }
 p {
   color:#b2dfdb; 
-  font-size: 15px;
+  font-size: 17px;
 }
 nav {
   background-color: white;
@@ -67,6 +69,9 @@ nav .navbar-brand h1 {
   font-size: 1rem;
   font-weight: 700;
   margin-top: 8px;
+}
+.olvidaste{
+  font-size: 12px;
 }
 .__text-combo {
   display: -webkit-box;
@@ -94,11 +99,6 @@ nav .navbar-brand h1 {
 .__text-combo.__light p {
     font-family: 'Taviraj', serif;
  }
-/*.__text-combo h2 {
-  font-size: 3em;
-  font-family: 'Pinyon Script', fantasy;
-  margin-bottom: -38px;
-}*/
 .__text-combo h3 {
   font-size: 3em;
   font-family: 'Julius Sans One', sans-serif;
@@ -181,6 +181,56 @@ div[class^="__header-"] {
   padding: 10px 0;
   background-color: #262626;
   color: #8b8e94;
+}
+
+.login {
+  padding: 2%;
+  display: flex;
+}
+.formulario {
+  justify-content: center;
+}
+
+.form{
+  width: 400px;
+}
+
+.sesion {
+  font-family: 'Satisfy';
+  text-shadow:0px 0px 3px black;
+}
+h2 {
+  font-family: 'Satisfy';
+}
+.tipo {
+  font-family: 'Alegreya'; 
+}
+
+.btn-primary {
+  background-color: #b2dfdb;
+  border: 0;
+}
+.btn-primary1 {
+  background-color: #b2dfdb;
+  border: 0;
+  color: white;
+  width: 100px;
+}
+
+.preguntas {
+  padding: 4%;
+}
+
+.preguntas p{
+  color: black;
+}
+.preguntas h1 {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.preguntas img{
+  width: 40px;
 }
 @media (max-width: 575px) {
   .__inner-img {

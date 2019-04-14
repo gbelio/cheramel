@@ -1,11 +1,29 @@
+<?php
+include_once("controladores/funciones.php");
+if($_POST){
+  $errores = validar($_POST);
+  if(count($errores)===0){
+    $usuario = buscarEmail($_POST["email"]);
+    if($usuario ==null){
+      $errores["email"]="Usted no esta registrado";
+    }else {
+      if(password_verify($_POST["password"],$usuario["password"])===false){
+        $errores["password"]= "Datos incorrectos";
+      }else {
+        crearSesion($usuario,$_POST);
+        header("location: perfil.php");
+      }
+    }
+  }
+}
+?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/master.css">
     <link rel="stylesheet" href="css/estilos.css">
     <link href="https://fonts.googleapis.com/css?family=Alegreya+Sans|Satisfy" rel="stylesheet">
     <title>Login</title>
@@ -50,24 +68,35 @@
       </ul>
     </div>
   </nav>
+  <?php
+      if(isset($errores)):?>
+        <ul class="alert alert-danger">
+          <?php
+          foreach ($errores as $key => $value) :?>
+            <li> <?=$value;?> </li>
+            <?php endforeach;?>
+        </ul>
+      <?php endif;?>
 <div class="login">
   <div class="col-xs-12 col-md-12 col-lg-12 formulario login">
-      <form class="form">
+      <form class="form" action="" method="POST">
         <h2 class="sesion">Iniciar Sesión</h2>
         <br>
         <div class="form-groups">
-          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingresar correo">
+          <input type="email" class="form-control" name="email" value="" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingresar correo">
         </div>
         <br>
         <div class="form-group">
-          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="**************">
+          <input type="password" class="form-control" name="password" value="" id="exampleInputPassword1" placeholder="**************">
         </div>
         <div class="form-group form-check">
           <br>
-          <input type="checkbox" class="form-check-input" id="exampleCheck1">
+          <input type="checkbox" name="recordarme" class="form-check-input" id="exampleCheck1">
           <label class="form-check-label" for="exampleCheck1">Recordarme</label>  
         </div>
         <button type="submit" class="btn btn-primary1">Ingresar</button>
+        <br><br>
+        <p class="olvidaste"><a href="#">¿Olvidaste o bloqueaste tu contraseña?</a></p>
       </form>
   </div>
 </div>

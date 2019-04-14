@@ -3,8 +3,9 @@ include_once("controladores/funciones.php");
 if($_POST){
   $datos=trimer($_POST);
   $errores=validar($datos);
+  $avatarUsuario = guardarArchivo($_FILES, $_POST);
   if (count($errores) == 0){
-    $registro=armarRegistro($_POST);
+    $registro=armarRegistro($_POST, $avatarUsuario);
     guardar($registro);
     header("location:login.php");
     exit;
@@ -20,7 +21,6 @@ if($_POST){
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Alegreya+Sans|Satisfy" rel="stylesheet">    
     <link rel="stylesheet" href="css/estilos.css">
-    <link rel="stylesheet" href="css/master.css">
     <title>Registro</title>
 </head>
 <body class="bodyregistro" >
@@ -63,27 +63,32 @@ if($_POST){
       </ul>
     </div>
   </nav>
-    <?php
+  <?php
       if(isset($errores)):?>
-        <ul>
+        <ul class="alert alert-danger">
           <?php
           foreach ($errores as $key => $value) :?>
-            <li class="alert alert-danger"> <?=$value;?> </li>
+            <li> <?=$value;?> </li>
             <?php endforeach;?>
         </ul>
-    <?php endif;?>
+      <?php endif;?>
   <div class="login">
     <div class="col-xs-12 col-md-12 col-lg-12 formulario login">
-      <form class="form" action="" method="POST">
+      <form class="form" action="" method="POST" enctype="multipart/form-data">
         <h2 class="sesion">Crear Cuenta</h2>
         <br>
         <div class="form-groups">
           <input type="text" class="form-control" id="nombre" name="nombre" value="<?=isset($errores["nombre"])? "": inputUsuario("nombre");?>" placeholder="Nombre" autofocus required>
           <br>
-          <input type="text" class="form-control" id="apellido" name="apellido" value="<?=isset($errores["nombre"])? "": inputUsuario("apellido");?>" placeholder="Apellido" required>
+          <input type="text" class="form-control" id="apellido" name="apellido" value="<?=isset($errores["apellido"])? "": inputUsuario("apellido");?>" placeholder="Apellido" required>
           <br>
-          <input type="email" class="form-control" id="email" name="email" value="<?=isset($errores["nombre"])? "": inputUsuario("email");?>" placeholder="Email" required>
+          <input type="email" class="form-control" id="email" name="email" value="<?=isset($errores["email"])? "": inputUsuario("email");?>" placeholder="Email" required>
           <br>
+          <div class="custom-file">
+          <input type="file" class="custom-file-input" id="avatar" name="avatar" value="<?=isset($errores["avatar"])? "": inputUsuario("avatar");?>" placeholder="Seleccione una imagen" required>
+          <label class="custom-file-label" for="customFileLang">Seleccionar Archivo</label>
+          </div>
+          <br><br>
           <input type="password" class="form-control" id="password" name="password" value="" placeholder="Contraseña" required>  
           <br>
           <input type="password" class="form-control" id="repassword" name="repassword" value="" placeholder="Confirmar Contraseña" required>
