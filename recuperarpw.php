@@ -39,8 +39,9 @@ if($_POST){
   </body>
 </html>
 
-ingresa el email
+/*ingresa el email
 buscarEmail en DB
 Traer usuario
-Sobreescribir password con un valor aleatorio
+Sobreescribir password con un valo                                                                                                                                 r aleatorio
 Enviar valor aleatorio por mail
+*/

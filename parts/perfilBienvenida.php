@@ -6,3 +6,7 @@
     </article> 
   </section>
 </div>
+
+/*Agregar inputs con los valores precargados
+por el usuario para que puedan editar el mismo y
+modificar el json*/
