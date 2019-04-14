@@ -21,37 +21,49 @@ function validar($datos){
         $nombre = trim($datos["nombre"]);
     
         if(empty($nombre)){
-        $errores["nombre"]= "El campo nombre no debe estar vacio";
+        $errores["nombre"]= "Completar campo NOMBRE";
         }
-    }    
+    }
+
     $email = trim($datos["email"]);
     if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
-        $errores["email"]="Email invalido !!!!!";
+        $errores["email"]="Ingrese un email valido";
     }
-    $password= trim($datos["password"]);
+    if(isset($datos["password"])){
+        $password= trim($datos["password"]);
+        if(empty($password)){
+            $errores["password"]= "Completar campo CONTRASEÑA";
+        }elseif (strlen($password)<6) {
+            $errores["password"]="La contraseña debe tener como mínimo 6 caracteres";
+        }
+    
+    }
     if(isset($datos["repassword"])){
         $repassword = trim($datos["repassword"]);
     }
 
-    if(empty($password)){
-        $errores["password"]= "Hermano mio el campo password no lo podés dejar en blanco";
-    }elseif (strlen($password)<6) {
-        $errores["password"]="La contraseña debe tener como mínimo 6 caracteres";
-    }
     if(isset($datos["repassword"])){
         if ($password != $repassword) {
             $errores["repassword"]="Las contraseñas no coinciden";
         }
     }
+    if(isset($datos["passwordLogIn"])){
+        $passwordLogIn= trim($datos["passwordLogIn"]);
+        if(empty($passwordLogIn)){
+        $errores["passwordLogIn"]= "Completar campo CONTRASEÑA";
+        }elseif (strlen($passwordLogIn)<6) {
+            $errores["passwordLogIn"]="La contraseña debe tener como mínimo 6 caracteres";
+        }
+    }
     
     if(count($_FILES)!=0){
         if($_FILES["avatar"]["error"]!=0){
-            $errores["avatar"]="Error debe subir imagen";
+            $errores["avatar"]="Error al cargar imagen";
         }
         $nombre = $_FILES["avatar"]["name"];
         $ext = pathinfo($nombre,PATHINFO_EXTENSION);
         if($ext != "png" && $ext != "jpg"){
-            $errores["avatar"]="Debe seleccionar archivo png ó jpg";
+            $errores["avatar"]="Debe seleccionar un archivo png o jpg";
         }       
     }
     return $errores;
@@ -116,7 +128,7 @@ function abrirBaseDatos(){
     $datosjson = file_get_contents("usuarios.json");
     $datosjson = explode(PHP_EOL,$datosjson);
     array_pop($datosjson);
-    foreach ($datosjson as  $usuario) {
+    foreach ($datosjson as $usuario) {
         $baseDatosUsuarios[]= json_decode($usuario,true);
     }
     return $baseDatosUsuarios;
@@ -130,6 +142,20 @@ function crearSesion($usuario, $datos){
     if ($_POST["recordarme"]=="on"){
         setcookie("password",$datos["password"],time()+3600);
         setcookie("email",$usuario["email"],time()+3600);
-        setcookie("nombre",$usuario["nombre"],time()+3600);
+    }
+}
+
+function restaurarSesion($COOKIE){
+    if (count($COOKIE) > 1){
+        $usuario = buscarEmail($COOKIE["email"]);
+        if($usuario ==null){
+            $errores["email"]="Usted no esta registrado";
+        }else {
+            if(password_verify($COOKIE["password"],$usuario["password"])===false){
+            $errores["password"]= "Datos incorrectos";
+            }else {
+            crearSesion($usuario,$COOKIE);
+            }
+        }
     }
 }

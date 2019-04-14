@@ -19,6 +19,7 @@ if($_POST){
   ?>
   <body class="bodyregistro" >
     <?php
+      restaurarSesion($_COOKIE);
       if (count($_SESSION) != 0){
         header("location:perfil.php");
       }else{

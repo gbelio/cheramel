@@ -1,3 +1,6 @@
+<?php
+include_once("controladores/funciones.php");
+?>
 <!DOCTYPE html>
 <html lang="es">
   <?php
@@ -5,6 +8,7 @@
   ?>
   <body class="bodylogin">
     <?php
+      restaurarSesion($_COOKIE);
       if (count($_SESSION) != 0){
         include_once("parts/headerLogOut.php");
       }else{

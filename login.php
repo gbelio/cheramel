@@ -6,10 +6,10 @@ if($_POST){
     $usuario = buscarEmail($_POST["email"]);
     if($usuario ==null){
       $errores["email"]="Usted no esta registrado";
-    }else {
-      if(password_verify($_POST["password"],$usuario["password"])===false){
+    }else{
+      if(password_verify($_POST["passwordLogIn"],$usuario["password"])===false){
         $errores["password"]= "Datos incorrectos";
-      }else {
+      }else{
         crearSesion($usuario,$_POST);
         header("location: perfil.php");
       }
@@ -24,6 +24,7 @@ if($_POST){
   ?>
   <body class="bodylogin">
     <?php
+      restaurarSesion($_COOKIE);
       if (count($_SESSION) != 0){
           header("location:perfil.php");
         }else{

@@ -8,7 +8,7 @@
         </div>
         <br>
         <div class="form-group">
-          <input type="password" class="form-control" name="password" value="" id="exampleInputPassword1" placeholder="**************">
+          <input type="password" class="form-control" name="passwordLogIn" value="" id="exampleInputPassword1" placeholder="**************">
         </div>
         <div class="form-group form-check">
           <br>
@@ -17,7 +17,7 @@
         </div>
         <button type="submit" class="btn btn-primary1">Ingresar</button>
         <br><br>
-        <p class="olvidaste"><a href="#">¿Olvidaste o bloqueaste tu contraseña?</a></p>
+        <p class="olvidaste"><a href="#">¿Olvidaste tu contraseña?</a></p>
       </form>
   </div>
 </div>

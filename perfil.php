@@ -8,6 +8,7 @@ include_once("controladores/funciones.php");
   ?>
   <body>
     <?php
+      restaurarSesion($_COOKIE);
       if (count($_SESSION) != 0){
         include_once("parts/headerLogOut.php");
         include_once("parts/nav.php");

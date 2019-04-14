@@ -232,6 +232,13 @@ h2 {
 .preguntas img{
   width: 40px;
 }
+
+.fotoBienvenida{
+  display: flex;
+  justify-content: center;
+  width: 400px;
+  height: 400px;
+}
 @media (max-width: 575px) {
   .__inner-img {
     height: 160px;
