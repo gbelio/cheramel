@@ -9,7 +9,11 @@ include_once("controladores/funciones.php");
   <body>
     <div class="container-fluid p-0">
       <?php
-        include_once("parts/header.php");
+        if (count($_SESSION) != 0){
+          include_once("parts/headerLogOut.php");
+        }else{
+          include_once("parts/header.php");
+        }
         include_once("parts/nav.php");
         include_once("parts/carousel.php");
         include_once("parts/productosIndex.php");

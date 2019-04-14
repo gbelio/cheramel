@@ -19,12 +19,16 @@ if($_POST){
   ?>
   <body class="bodyregistro" >
     <?php
-      include_once("parts/header.php");
-      include_once("parts/nav.php");
-      include_once("parts/mostrarErrores.php");
-      include_once("parts/registro.php");
-      include_once("parts/footer.php");
-      include_once("parts/scriptsBootstrap.php");
+      if (count($_SESSION) != 0){
+        header("location:perfil.php");
+      }else{
+        include_once("parts/header.php");
+        include_once("parts/nav.php");
+        include_once("parts/mostrarErrores.php");
+        include_once("parts/registro.php");
+        include_once("parts/footer.php");
+        include_once("parts/scriptsBootstrap.php");
+      }
     ?>
   </body>
 </html>
