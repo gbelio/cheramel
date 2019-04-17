@@ -5,10 +5,15 @@ if($_POST){
   $errores=validar($datos);
   $avatarUsuario = guardarArchivo($_FILES, $_POST);
   if (count($errores) == 0){
-    $registro=armarRegistro($_POST, $avatarUsuario);
-    guardar($registro);
-    header("location:login.php");
-    exit;
+    $usuario = buscarEmail($_POST["email"]);
+      if($usuario != null){
+        $errores["email"]="La cuenta <b>".$_POST["email"]."</b> se encuentra registrada.";
+      }else{
+        $registro=armarRegistro($_POST, $avatarUsuario);
+        guardar($registro);
+        header("location:login.php");
+        exit;
+      }
   }
 }
 ?>

@@ -24,17 +24,12 @@ if($_POST){
   ?>
   <body class="bodylogin">
     <?php
-      restaurarSesion($_COOKIE);
-      if (count($_SESSION) != 0){
-          header("location:perfil.php");
-        }else{
           include_once("parts/header.php");
           include_once("parts/nav.php");
           include_once("parts/mostrarErrores.php");
-          include_once("parts/login.php");
+          include_once("parts/ingreseEmail.php");
           include_once("parts/footer.php");
           include_once("parts/scriptsBootstrap.php");
-        }
     ?>
   </body>
 </html>
@@ -42,6 +37,6 @@ if($_POST){
 /*ingresa el email
 buscarEmail en DB
 Traer usuario
-Sobreescribir password con un valo                                                                                                                                 r aleatorio
+Sobreescribir password con un valor                                                                                                                             r aleatorio
 Enviar valor aleatorio por mail
 */

@@ -8,6 +8,12 @@ function dd($valor){
     echo "</pre>";
 }
 
+function dump($valor){
+    echo "<pre>";
+        var_dump($valor);
+    echo "</pre>";
+}
+
 function trimer($valores){
     foreach ($valores as $key => $value){
         $datos[$key]= trim($value);
@@ -115,6 +121,7 @@ function guardarArchivo($imagen, $datos){
 
 function buscarEmail($email){
     $baseDatosUsuarios = abrirBaseDatos();
+    $i=0;
     foreach ($baseDatosUsuarios as $usuario) {
         if($usuario["email"]===$email){
             return $usuario;
@@ -123,19 +130,19 @@ function buscarEmail($email){
     return null;
 }
 
-
 function abrirBaseDatos(){
     $datosjson = file_get_contents("usuarios.json");
     $datosjson = explode(PHP_EOL,$datosjson);
     array_pop($datosjson);
     foreach ($datosjson as $usuario) {
-        $baseDatosUsuarios[]= json_decode($usuario,true);
+        $baseDatosUsuarios[]=json_decode($usuario,true);
     }
     return $baseDatosUsuarios;
 }
 
 function crearSesion($usuario, $datos){
     $_SESSION["nombre"]=$usuario["nombre"];
+    $_SESSION["apellido"]=$usuario["apellido"];
     $_SESSION["email"]=$usuario["email"];
     $_SESSION["perfil"]=$usuario["perfil"];
     $_SESSION["avatar"]=$usuario["avatar"];
@@ -157,5 +164,23 @@ function restaurarSesion($COOKIE){
             crearSesion($usuario,$COOKIE);
             }
         }
+    }
+}
+function encondearJson($json){
+    file_put_contents('usuarios.json',$json. PHP_EOL, FILE_APPEND);
+}
+
+function editarUsuario($email){
+    $baseDatosUsuarios = abrirBaseDatos();
+    rename ("usuarios.json", "backusuarios.json");
+    touch ("usuarios.json");
+    foreach ($baseDatosUsuarios as $usuario) {
+        if($usuario["email"] === $email){
+            $usuario["nombre"] = $_POST["nombre"];
+            $usuario["apellido"] = $_POST["apellido"];
+            $usuario["email"] = $_POST["email"];
+        }
+        $jsusuario = json_encode($usuario);
+        file_put_contents('usuarios.json',$jsusuario. PHP_EOL, FILE_APPEND);
     }
 }
