@@ -31,46 +31,56 @@ function validar($datos){
         }
     }
 
-    $email = trim($datos["email"]);
-    if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
-        $errores["email"]="Ingrese un email valido";
-    }
-    if(isset($datos["password"])){
-        $password= trim($datos["password"]);
-        if(empty($password)){
-            $errores["password"]= "Completar campo CONTRASEÑA";
-        }elseif (strlen($password)<6) {
-            $errores["password"]="La contraseña debe tener como mínimo 6 caracteres";
-        }
+    if(isset($datos["apellido"])){
+        $apellido = trim($datos["apellido"]);
     
-    }
-    if(isset($datos["repassword"])){
-        $repassword = trim($datos["repassword"]);
+        if(empty($apellido)){
+        $errores["apellido"]= "Completar campo APELLIDO";
+        }
     }
 
-    if(isset($datos["repassword"])){
-        if ($password != $repassword) {
-            $errores["repassword"]="Las contraseñas no coinciden";
-        }
+    $email = trim($datos["email"]);
+    if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+        $errores["email"]="Ingrese un EMAIL valido";
     }
-    if(isset($datos["passwordLogIn"])){
-        $passwordLogIn= trim($datos["passwordLogIn"]);
-        if(empty($passwordLogIn)){
-        $errores["passwordLogIn"]= "Completar campo CONTRASEÑA";
-        }elseif (strlen($passwordLogIn)<6) {
-            $errores["passwordLogIn"]="La contraseña debe tener como mínimo 6 caracteres";
+    if (count($_SESSION) == 0){
+        if(isset($datos["password"])){
+            $password= trim($datos["password"]);
+            if(empty($password)){
+                $errores["password"]= "Completar campo CONTRASEÑA";
+            }elseif (strlen($password)<6) {
+                $errores["password"]="La contraseña debe tener como mínimo 6 caracteres";
+            }
+        
         }
-    }
-    
-    if(count($_FILES)!=0){
-        if($_FILES["avatar"]["error"]!=0){
-            $errores["avatar"]="Error al cargar imagen";
+        if(isset($datos["repassword"])){
+            $repassword = trim($datos["repassword"]);
         }
-        $nombre = $_FILES["avatar"]["name"];
-        $ext = pathinfo($nombre,PATHINFO_EXTENSION);
-        if($ext != "png" && $ext != "jpg"){
-            $errores["avatar"]="Debe seleccionar un archivo png o jpg";
-        }       
+
+        if(isset($datos["repassword"])){
+            if ($password != $repassword) {
+                $errores["repassword"]="Las contraseñas no coinciden";
+            }
+        }
+        if(isset($datos["passwordLogIn"])){
+            $passwordLogIn= trim($datos["passwordLogIn"]);
+            if(empty($passwordLogIn)){
+            $errores["passwordLogIn"]= "Completar campo CONTRASEÑA";
+            }elseif (strlen($passwordLogIn)<6) {
+                $errores["passwordLogIn"]="La contraseña debe tener como mínimo 6 caracteres";
+            }
+        }
+        
+        if(count($_FILES)!=0){
+            if($_FILES["avatar"]["error"]!=0){
+                $errores["avatar"]="Error al cargar imagen";
+            }
+            $nombre = $_FILES["avatar"]["name"];
+            $ext = pathinfo($nombre,PATHINFO_EXTENSION);
+            if($ext != "png" && $ext != "jpg"){
+                $errores["avatar"]="Debe seleccionar un archivo png o jpg";
+            }       
+        }
     }
     return $errores;
 }
@@ -99,7 +109,7 @@ function guardar($usuario){
 }
 
 function guardarArchivo($imagen, $datos){
-    $nombreUsuario = $datos["nombre"];
+    $emailUsuario = $datos["email"];
 	if($imagen["avatar"]["error"] != 0){
         $errores["avatar"]= "Error de carga";
     }else{
@@ -112,9 +122,9 @@ function guardarArchivo($imagen, $datos){
         $archivo=$imagen["avatar"]["tmp_name"];
         $miArchivo=dirname(__DIR__);
 		$miArchivo=$miArchivo."/imagenes/";
-		$miArchivo=$miArchivo.$nombreUsuario.".".$ext;
+		$miArchivo=$miArchivo.$emailUsuario.".".$ext;
         move_uploaded_file($archivo, $miArchivo);
-        $avatarUsuario = $nombreUsuario.".".$ext;
+        $avatarUsuario = $emailUsuario.".".$ext;
     }
     return $avatarUsuario;
 }
@@ -179,8 +189,28 @@ function editarUsuario($email){
             $usuario["nombre"] = $_POST["nombre"];
             $usuario["apellido"] = $_POST["apellido"];
             $usuario["email"] = $_POST["email"];
+            $usuario["avatar"] = $_SESSION["avatar"];
+            if (!empty($_POST["password"])){
+                if ($_POST["password"] == $_POST["repassword"])
+                    $usuario["password"] = password_hash($_POST["password"],PASSWORD_DEFAULT); 
+            }
         }
         $jsusuario = json_encode($usuario);
         file_put_contents('usuarios.json',$jsusuario. PHP_EOL, FILE_APPEND);
     }
+}
+
+function recuperarPassword($email){
+    $baseDatosUsuarios = abrirBaseDatos();
+    rename ("usuarios.json", "backusuarios.json");
+    touch ("usuarios.json");
+    foreach ($baseDatosUsuarios as $usuario) {
+        if($usuario["email"] === $email){
+            $randomPassword = substr(MD5(rand(microtime())), 0, 6);
+            $usuario["password"] = password_hash($randomPassword,PASSWORD_DEFAULT);
+        }
+        $jsusuario = json_encode($usuario);
+        file_put_contents('usuarios.json',$jsusuario. PHP_EOL, FILE_APPEND);
+    }
+    return $randomPassword;
 }

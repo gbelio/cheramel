@@ -17,7 +17,7 @@
         </div>
         <button type="submit" class="btn btn-primary1">Ingresar</button>
         <br><br>
-        <p class="olvidaste"><a href="#">¿Olvidaste tu contraseña?</a></p>
+        <p class="olvidaste"><a href="restablecerPassword.php">¿Olvidaste tu contraseña?</a></p>
       </form>
   </div>
 </div>

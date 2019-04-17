@@ -7,7 +7,7 @@
           <input type="email" class="form-control" name="email" value="" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingresar correo">
         </div>
           <br>
-        <button type="submit" class="btn btn-primary1">Restablecer Contraseña</button>
+        <button type="submit" class="btn btn-primary1 Restablecer">Restablecer Password</button>
         <br><br>
       </form>
   </div>

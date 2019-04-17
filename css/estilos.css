@@ -214,9 +214,12 @@ h2 {
   background-color: #b2dfdb;
   border: 0;
   color: white;
-  width: 200px;
+  width: 150px;
 }
 
+.Restablecer{
+  width: 200px;
+}
 .preguntas {
   padding: 4%;
 }

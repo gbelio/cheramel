@@ -32,13 +32,14 @@ if($_POST){
             <br>
             <input type="text" class="form-control" id="apellido" name="apellido" value="<?=$_SESSION["apellido"];?>" value="<?=isset($errores["apellido"])? "": inputUsuario("apellido");?>" placeholder="" required>
             <br>
-            <input type="email" class="form-control" id="email" name="email" value="<?=$_SESSION["email"];?>" value="<?=isset($errores["email"])? "": inputUsuario("email");?>" placeholder="<?=$_SESSION["email"];?>" required>
+            <input type="email" class="form-control" readonly="readonly" id="email" name="email" value="<?=$_SESSION["email"];?>" value="<?=isset($errores["email"])? "": inputUsuario("email");?>" placeholder="<?=$_SESSION["email"];?>" required>
             <br>
-            <input type="file" class="file-input" id="avatar" name="avatar" value="<?=$_SESSION["avatar"];?>" value="<?=isset($errores["avatar"])? "": inputUsuario("avatar");?>" placeholder="<?=$_SESSION["avatar"];?>" required>
+            <input type="file" class="" id="avatar" name="avatar" value="<?=$_SESSION["avatar"];?>" value="<?=isset($errores["avatar"])? "": inputUsuario("avatar");?>" placeholder="<?=$_SESSION["avatar"];?>">
             <br><br>
-            <input type="password" class="form-control" id="password" name="password" value="" placeholder="Contraseña" required>
+            <input type="password" class="form" id="password" name="password" value="" placeholder="Contraseña">
             <br>
-            <input type="password" class="form-control" id="repassword" name="repassword" value="" placeholder="Confirmar Contraseña" required>
+            <br>
+            <input type="password" class="form" id="repassword" name="repassword" value="" placeholder="Confirmar Contraseña">
             <br>
             <div class="col-xs-12">
               <button type="submit" class="btn btn-primary1 col-xs-6">Editar</button>

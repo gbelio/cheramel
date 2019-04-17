@@ -31,9 +31,9 @@
       <p>Ponte en contacto con nosotros a info@cheramel.com y te enviaremos uno nuevo.</p>
       <br>
       <h1>No puedo acceder a mi cuenta, ¿qué hago?</h1>
-      <p>Si el motivo por el cual no podés acceder es  porque olvidaste tu contraseña, deberás ingresar tu mail y hacer click en <a href="#">¿Olvidaste tu contraseña?</a></p>
+      <p>Si el motivo por el cual no podés acceder es  porque olvidaste tu contraseña, deberás ingresar tu mail y hacer click en <a href="restablecerPassword.php">¿Olvidaste tu contraseña?</a></p>
       <br>
       <h1>Mi cuenta está bloqueada, ¿cómo la habilito?</h1>
       <p>Luego de cinco intentos fallidos de intentar ingresar a tu cuenta de Todo Pago tu contraseña será bloqueada y recibirás un correo con la opción de recuperarla. Deberás completar la pregunta de seguridad, ingresar una nueva clave y quedará restablecida.</p>
-  </div>
+  </div>recuperarPassword.php
 </div>
