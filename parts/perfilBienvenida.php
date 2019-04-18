@@ -5,9 +5,10 @@
       <img src="imagenes/<?=$_SESSION["avatar"];?>" alt="Foto de <?=$_SESSION["nombre"];?>">
       <br><br>
       <?php
-        include_once("parts/mostrarErrores.php");
+        include_once("parts/mostrarErrores.php");        
       ?>
     </article>
+    
     <article class="col-12 col-lg-8">
       <div class="login">
         <div class="col-xs-12 col-md-12 col-lg-12 formulario login">
@@ -21,7 +22,7 @@
             <br>
             <input type="email" class="form-control" readonly="readonly" id="email" name="email" value="<?=$_SESSION["email"];?>" value="<?=isset($errores["email"])? "": inputUsuario("email");?>" placeholder="<?=$_SESSION["email"];?>" required>
             <br>
-            <input type="file" class="" id="avatar" name="avatar" value="<?=$_SESSION["avatar"];?>" value="" placeholder="<?=$_SESSION["avatar"];?>">
+            <input type="file" class="" id="avatar" accept="image/png,image/jpg" name="avatar" value="<?=$_SESSION["avatar"];?>" placeholder="<?=$_SESSION["avatar"];?>">
             <br><br>
             <input type="password" class="form" id="password" name="password" value="" placeholder="Contraseña">
             <br><br>

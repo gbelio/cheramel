@@ -1,7 +1,7 @@
 <?php
 include_once("controladores/funciones.php");
 if($_POST){
-  $datos=trimer($_POST);
+  $datos=($_POST);
   $errores=validar($datos);
   $avatarUsuario = guardarArchivo($_FILES, $_POST);
   if (count($errores) == 0){

@@ -14,13 +14,6 @@ function dump($valor){
     echo "</pre>";
 }
 
-function trimer($valores){
-    foreach ($valores as $key => $value){
-        $datos[$key]= trim($value);
-    }
-    return $datos;
-}
-
 function validar($datos){
     $errores=[];
     if(isset($datos["nombre"])){
@@ -38,7 +31,8 @@ function validar($datos){
         $errores["apellido"]= "Completar campo APELLIDO";
         }
     }
-    if(count($_FILES)!=0){
+    
+    if($_FILES["avatar"]["size"] != 0){
         if($_FILES["avatar"]["error"]!=0){
             $errores["avatar"]="Error al cargar imagen";
         }
@@ -77,8 +71,8 @@ function validar($datos){
             $errores["passwordLogIn"]= "Completar campo CONTRASEÑA";
             }
         }
-        return $errores;
     }
+    return $errores;
 }
 
 function inputUsuario($campo){

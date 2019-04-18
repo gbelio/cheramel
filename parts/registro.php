@@ -12,6 +12,7 @@
         <br>
         <div class="custom-file">
           <input type="file" class="" id="avatar" name="avatar" value="<?=isset($errores["avatar"])? "": inputUsuario("avatar");?>" placeholder="Seleccione una imagen" required>
+          <label for="">HOLA<?=isset($errores["avatar"])? "": inputUsuario("avatar");?></label>
         </div>
         <br><br>
         <input type="password" class="form-control" id="password" name="password" value="" placeholder="Contraseña" required>  
