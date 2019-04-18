@@ -11,8 +11,7 @@
         <input type="email" class="form-control" id="email" name="email" value="<?=isset($errores["email"])? "": inputUsuario("email");?>" placeholder="Email" required>
         <br>
         <div class="custom-file">
-          <input type="file" class="custom-file-input" id="avatar" name="avatar" value="<?=isset($errores["avatar"])? "": inputUsuario("avatar");?>" placeholder="Seleccione una imagen" required>
-          <label class="custom-file-label" for="customFileLang"></label>
+          <input type="file" class="" id="avatar" name="avatar" value="<?=isset($errores["avatar"])? "": inputUsuario("avatar");?>" placeholder="Seleccione una imagen" required>
         </div>
         <br><br>
         <input type="password" class="form-control" id="password" name="password" value="" placeholder="Contraseña" required>  

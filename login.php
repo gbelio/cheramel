@@ -25,7 +25,10 @@ if($_POST){
   <body class="bodylogin">
     <?php
       restaurarSesion($_COOKIE);
-      if (count($_SESSION) != 0){
+      if (count($_COOKIE ) > 2){
+        header("location:index.php");
+      }
+      if (count($_SESSION) != 0) {
           header("location:perfil.php");
         }else{
           include_once("parts/header.php");

@@ -38,12 +38,21 @@ function validar($datos){
         $errores["apellido"]= "Completar campo APELLIDO";
         }
     }
-
+    if(count($_FILES)!=0){
+        if($_FILES["avatar"]["error"]!=0){
+            $errores["avatar"]="Error al cargar imagen";
+        }
+        $nombre = $_FILES["avatar"]["name"];
+        $ext = pathinfo($nombre,PATHINFO_EXTENSION);
+        if($ext != "png" && $ext != "jpg"){
+            $errores["avatar"]="Debe seleccionar un archivo png o jpg";
+        }
+    }
     $email = trim($datos["email"]);
     if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
         $errores["email"]="Ingrese un EMAIL valido";
     }
-    if (count($_SESSION) == 0){
+    if (!empty($_POST["password"]) || !empty($_POST["repassword"])){
         if(isset($datos["password"])){
             $password= trim($datos["password"]);
             if(empty($password)){
@@ -66,23 +75,10 @@ function validar($datos){
             $passwordLogIn= trim($datos["passwordLogIn"]);
             if(empty($passwordLogIn)){
             $errores["passwordLogIn"]= "Completar campo CONTRASEÑA";
-            }elseif (strlen($passwordLogIn)<6) {
-                $errores["passwordLogIn"]="La contraseña debe tener como mínimo 6 caracteres";
             }
         }
-        
-        if(count($_FILES)!=0){
-            if($_FILES["avatar"]["error"]!=0){
-                $errores["avatar"]="Error al cargar imagen";
-            }
-            $nombre = $_FILES["avatar"]["name"];
-            $ext = pathinfo($nombre,PATHINFO_EXTENSION);
-            if($ext != "png" && $ext != "jpg"){
-                $errores["avatar"]="Debe seleccionar un archivo png o jpg";
-            }       
-        }
+        return $errores;
     }
-    return $errores;
 }
 
 function inputUsuario($campo){
@@ -157,7 +153,7 @@ function crearSesion($usuario, $datos){
     $_SESSION["perfil"]=$usuario["perfil"];
     $_SESSION["avatar"]=$usuario["avatar"];
     if ($_POST["recordarme"]=="on"){
-        setcookie("password",$datos["password"],time()+3600);
+        setcookie("password",$datos["passwordLogIn"],time()+3600);
         setcookie("email",$usuario["email"],time()+3600);
     }
 }
@@ -176,14 +172,12 @@ function restaurarSesion($COOKIE){
         }
     }
 }
-function encondearJson($json){
-    file_put_contents('usuarios.json',$json. PHP_EOL, FILE_APPEND);
-}
 
 function editarUsuario($email){
     $baseDatosUsuarios = abrirBaseDatos();
     rename ("usuarios.json", "backusuarios.json");
     touch ("usuarios.json");
+    unlink ("backusuarios.json");
     foreach ($baseDatosUsuarios as $usuario) {
         if($usuario["email"] === $email){
             $usuario["nombre"] = $_POST["nombre"];

@@ -1,25 +1,12 @@
-<?php
-include_once("controladores/funciones.php");
-if($_POST){
-  $datos=trimer($_POST);
-  $errores=validar($datos);
-  $avatarUsuario = guardarArchivo($_FILES, $_POST);
-  if (count($errores) == 0){
-    editarUsuario($_SESSION["email"]);
-    $usuario=buscarEmail($_SESSION["email"]);
-    crearSesion($usuario,$_POST);
-    header("location:perfil.php");
-  }
-}
-?>
 <div class="container">
   <section class="row">
-    <?php
-    include_once("parts/mostrarErrores.php");
-    ?>
     <article class="col-12 col-lg-4">
-      <h2>Bienvenido: <?=$_SESSION["nombre"];?></h2>
+      <h2>Bienvenide <?=$_SESSION["nombre"];?></h2>
       <img src="imagenes/<?=$_SESSION["avatar"];?>" alt="Foto de <?=$_SESSION["nombre"];?>">
+      <br><br>
+      <?php
+        include_once("parts/mostrarErrores.php");
+      ?>
     </article>
     <article class="col-12 col-lg-8">
       <div class="login">
@@ -34,15 +21,14 @@ if($_POST){
             <br>
             <input type="email" class="form-control" readonly="readonly" id="email" name="email" value="<?=$_SESSION["email"];?>" value="<?=isset($errores["email"])? "": inputUsuario("email");?>" placeholder="<?=$_SESSION["email"];?>" required>
             <br>
-            <input type="file" class="" id="avatar" name="avatar" value="<?=$_SESSION["avatar"];?>" value="<?=isset($errores["avatar"])? "": inputUsuario("avatar");?>" placeholder="<?=$_SESSION["avatar"];?>">
+            <input type="file" class="" id="avatar" name="avatar" value="<?=$_SESSION["avatar"];?>" value="" placeholder="<?=$_SESSION["avatar"];?>">
             <br><br>
             <input type="password" class="form" id="password" name="password" value="" placeholder="Contraseña">
-            <br>
-            <br>
+            <br><br>
             <input type="password" class="form" id="repassword" name="repassword" value="" placeholder="Confirmar Contraseña">
-            <br>
+            <br><br>
             <div class="col-xs-12">
-              <button type="submit" class="btn btn-primary1 col-xs-6">Editar</button>
+              <button type="submit" class="btn btn-primary1 col-xs-6">Guardar</button>
               <button type="reset" class="btn btn-primary1 col-xs-6">Limpiar</button>
             </div>
           </form>

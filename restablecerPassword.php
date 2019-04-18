@@ -6,13 +6,6 @@ if($_POST){
       $errores["email"]="Usted no esta registrado";
     }else{
       $nuevaPassword = recuperarPassword($_POST["email"]);
-      echo $nuevaPassword;
-      $to = $_POST["email"];
-
-      $subject = "Restablecer Contraseña Cheramel";
-      $message = "Ingrese nuevamente a Cheramel y coloque el siguiente password. Luego restablezca su contraseña";
-      $headers = "From: mi@cuentadeemail.com";
-      mail($to, $subject, $message, $headers);
       }
     }
 ?>
