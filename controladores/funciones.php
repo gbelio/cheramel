@@ -22,6 +22,10 @@ function validar($datos){
         if(empty($nombre)){
         $errores["nombre"]= "Completar campo NOMBRE";
         }
+
+        if(is_numeric($nombre)){
+            $errores["nombre"]= "No se admiten números en el campo NOMBRE";
+            }
     }
 
     if(isset($datos["apellido"])){
@@ -30,6 +34,9 @@ function validar($datos){
         if(empty($apellido)){
         $errores["apellido"]= "Completar campo APELLIDO";
         }
+        if(is_numeric($apellido)){
+            $errores["apellido"]= "No se admiten números en el campo APELLIDO";
+            }
     }
     
     if($_FILES["avatar"]["size"] != 0){

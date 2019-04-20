@@ -10,7 +10,13 @@
         <button type="submit" class="btn btn-primary1 Restablecer">Restablecer Contraseña</button>
         <br><br>
         <div>
-          <h5>Su nueva contraseña es: <br><?="$nuevaPassword";?></h5>
+          <?php
+          if (isset($nuevaPassword)){
+            echo "<h5>Su nueva contraseña es: <br>" . $nuevaPassword . "</h5>";
+          }else {
+            
+          }
+          ?>
         </div>
       </form>
   </div>
