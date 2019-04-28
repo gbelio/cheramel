@@ -8,7 +8,7 @@ if($_POST){
     editarUsuario($_SESSION["email"]);
     $usuario=buscarEmail($_SESSION["email"]);
     crearSesion($usuario,$_POST);
-    usleep(10);
+    sleep(1);
     header("location:perfil.php");
   }
 }

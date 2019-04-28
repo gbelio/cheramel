@@ -38,17 +38,18 @@ function validar($datos){
             $errores["apellido"]= "No se admiten números en el campo APELLIDO";
             }
     }
-    
-    if($_FILES["avatar"]["size"] != 0){
-        if($_FILES["avatar"]["error"]!=0){
-            $errores["avatar"]="Error al cargar imagen";
+    if(isset($_FILES["avatar"]["size"])){
+        if($_FILES["avatar"]["size"] != 0){
+            if($_FILES["avatar"]["error"]!=0){
+                $errores["avatar"]="Error al cargar imagen";
+            }
+            $nombre = $_FILES["avatar"]["name"];
+            $ext = pathinfo($nombre,PATHINFO_EXTENSION);
+            if($ext != "png" && $ext != "jpg"){
+                $errores["avatar"]="Debe seleccionar un archivo png o jpg";
+            }
         }
-        $nombre = $_FILES["avatar"]["name"];
-        $ext = pathinfo($nombre,PATHINFO_EXTENSION);
-        if($ext != "png" && $ext != "jpg"){
-            $errores["avatar"]="Debe seleccionar un archivo png o jpg";
-        }
-    }
+    }    
     $email = trim($datos["email"]);
     if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
         $errores["email"]="Ingrese un EMAIL valido";
@@ -88,6 +89,10 @@ function inputUsuario($campo){
     }
 }
 
+function previousInput($campo){
+    return $_SESSION[$campo];
+}
+
 function armarRegistro($datos,$avatarUsuario){
     $usuario = [
         "nombre"=>$datos["nombre"],
@@ -107,23 +112,15 @@ function guardar($usuario){
 
 function guardarArchivo($imagen, $datos){
     $emailUsuario = $datos["email"];
-	if($imagen["avatar"]["error"] != 0){
-        $errores["avatar"]= "Error de carga";
-    }else{
         $nombre=$imagen["avatar"]["name"];
 		$ext=pathinfo($nombre, PATHINFO_EXTENSION);
-    }
-	if ($ext != "jpg" && $ext != "pdf" && $ext != "jpeg" && $ext != "png"){
-        $errores["avatar"] = "Cargue una imagen";
-    }else{
         $archivo=$imagen["avatar"]["tmp_name"];
         $miArchivo=dirname(__DIR__);
 		$miArchivo=$miArchivo."/imagenes/";
 		$miArchivo=$miArchivo.$emailUsuario.".".$ext;
         move_uploaded_file($archivo, $miArchivo);
         $avatarUsuario = $emailUsuario.".".$ext;
-    }
-    return $avatarUsuario;
+        return $avatarUsuario;
 }
 
 function buscarEmail($email){
@@ -151,9 +148,10 @@ function crearSesion($usuario, $datos){
     $_SESSION["nombre"]=$usuario["nombre"];
     $_SESSION["apellido"]=$usuario["apellido"];
     $_SESSION["email"]=$usuario["email"];
-    $_SESSION["perfil"]=$usuario["perfil"];
+    $_SESSION["privilegios"]=$usuario["privilegios"];
     $_SESSION["avatar"]=$usuario["avatar"];
-    if ($_POST["recordarme"]=="on"){
+    
+    if (isset($datos['recordarme'])){
         setcookie("password",$datos["passwordLogIn"],time()+3600);
         setcookie("email",$usuario["email"],time()+3600);
     }
@@ -184,10 +182,12 @@ function editarUsuario($email){
             $usuario["nombre"] = $_POST["nombre"];
             $usuario["apellido"] = $_POST["apellido"];
             $usuario["email"] = $_POST["email"];
-            $usuario["avatar"] = $_SESSION["avatar"];
+            if ($_FILES["avatar"]["size"]>0){
+                $usuario["avatar"] = guardarArchivo($_FILES, $_POST);
+            }
             if (!empty($_POST["password"])){
-                if ($_POST["password"] == $_POST["repassword"])
-                    $usuario["password"] = password_hash($_POST["password"],PASSWORD_DEFAULT); 
+            if ($_POST["password"] == $_POST["repassword"])
+                $usuario["password"] = password_hash($_POST["password"],PASSWORD_DEFAULT); 
             }
         }
         $jsusuario = json_encode($usuario);

@@ -3,7 +3,7 @@
     <div class="row __max-width px-md-4">
       <article class="col-12 text-center col-sm-6 text-sm-left text-md-left col-lg-3">
         <h4>CONTACTANOS</h4>
-        <p><strong>cherameliedg@gmail.com</strong><br>+54 11 1234 5678</p>
+        <p><strong>cherameliedg@gmail.com</strong><br>☏ +54 11 1234 5678</p>
       </article>
       <article class="col-12 text-center col-sm-6 text-sm-left text-md-left col-lg-3">
         <h4>DIRECCION</h4>

@@ -4,13 +4,12 @@
       <br>
       <h2 class="sesion">Bienvenid@ <?=$_SESSION["nombre"];?></h2>
       <br><br>
-      <img src="imagenes/<?=$_SESSION["avatar"];?>" alt="Foto de <?=$_SESSION["nombre"];?>">
+      <div class="avatar" style="background-image: url(imagenes/<?=$_SESSION["avatar"];?>)"></div>  
       <br><br>
       <?php
-        include_once("parts/mostrarErrores.php");        
+        include_once("parts/mostrarErrores.php");       
       ?>
     </article>
-    
     <article class="col-12 col-lg-8">
       <div class="login">
         <div class="col-xs-12 col-md-12 col-lg-12 formulario login">
@@ -18,7 +17,7 @@
             <h2 class="sesion">Editar Cuenta</h2>
             <br>
             <div class="form-groups">
-            <input type="text" maxlength="15" class="form-control" id="nombre" name="nombre" value="<?=$_SESSION["nombre"];?>" value="<?=isset($errores["apellido"])? "": inputUsuario("nombre");?>" placeholder="" autofocus required>
+            <input type="text" maxlength="15" class="form-control" id="nombre" name="nombre" value="<?=$_SESSION["nombre"];?>" value="<?=isset($errores["nombre"])? "": inputUsuario("nombre");?>" placeholder="" autofocus required>
             <br>
             <input type="text" maxlength="15" class="form-control" id="apellido" name="apellido" value="<?=$_SESSION["apellido"];?>" value="<?=isset($errores["apellido"])? "": inputUsuario("apellido");?>" placeholder="" required>
             <br>

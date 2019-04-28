@@ -2,11 +2,12 @@
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
+
 a:hover{
   text-decoration: none;
   color: black;
-  transition: 1s;
-  text-shadow: black 0px 0px 5px;
+  transition: 2s;
+  text-shadow: black 0px 0px 2px;
 }
 .ico{
   display: flex;
@@ -198,7 +199,7 @@ div[class^="__header-"] {
 
 .sesion {
   font-family: 'Satisfy';
-  text-shadow:0px 0px 3px black;
+  font-size: 30px;
 }
 h2 {
   font-family: 'Satisfy';
@@ -239,12 +240,15 @@ h2 {
   width: 40px;
 }
 
-.fotoBienvenida{
-  display: flex;
-  justify-content: center;
-  align-content: center;
-  width: 200px;
-  height: 200px;
+.avatar {
+  /* cambia estos dos valores para definir el tamaño de tu círculo */
+  height: 300px;
+  width: 300px;
+  /* los siguientes valores son independientes del tamaño del círculo */
+  background-repeat: no-repeat;
+  background-position: 50%;
+  border-radius: 50%;
+  background-size: 100% auto;
 }
 
 @media (max-width: 575px) {
