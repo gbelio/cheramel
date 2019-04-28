@@ -15,7 +15,7 @@
           <input type="checkbox" name="recordarme" class="form-check-input" id="exampleCheck1">
           <label class="form-check-label" for="exampleCheck1">Recordarme</label>  
         </div>
-        <button type="submit" class="btn btn-primary1">Ingresar</button>
+        <button type="submit" class="btn btn-primary1 BotonLogIn-Registro">Ingresar</button>
         <br><br>
         <p class="olvidaste"><a href="restablecerPassword.php">¿Olvidaste tu contraseña?</a></p>
       </form>
