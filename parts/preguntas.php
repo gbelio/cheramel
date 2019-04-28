@@ -35,5 +35,5 @@
       <br>
       <h1>Mi cuenta está bloqueada, ¿cómo la habilito?</h1>
       <p>Luego de cinco intentos fallidos de intentar ingresar a tu cuenta de Todo Pago tu contraseña será bloqueada y recibirás un correo con la opción de recuperarla. Deberás completar la pregunta de seguridad, ingresar una nueva clave y quedará restablecida.</p>
-  </div>recuperarPassword.php
+  </div>
 </div>

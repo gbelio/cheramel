@@ -201,7 +201,7 @@ function recuperarPassword($email){
     touch ("usuarios.json");
     foreach ($baseDatosUsuarios as $usuario) {
         if($usuario["email"] === $email){
-            $randomPassword = substr(MD5(rand(microtime())), 0, 6);
+            $randomPassword = substr(MD5(rand(2937,9999)), 0, 6);
             $usuario["password"] = password_hash($randomPassword,PASSWORD_DEFAULT);
         }
         $jsusuario = json_encode($usuario);
