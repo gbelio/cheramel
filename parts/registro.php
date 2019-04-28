@@ -20,8 +20,8 @@
       </div>
         <br>
       <div class="col-xs-12">
-        <button type="submit" class="btn btn-primary1 col-xs-6">Enviar</button>
-        <button type="reset" class="btn btn-primary1 col-xs-6">Limpiar</button>
+        <button type="submit" class="btn btn-primary1 col-xs-6 BotonLogIn-Registro">Enviar</button>
+        <button type="reset" class="btn btn-primary1 col-xs-6 BotonLogIn-Registro">Limpiar</button>
       </div>
     </form>
   </div>

@@ -30,8 +30,8 @@
             <input type="password" class="form" id="repassword" name="repassword" value="" placeholder="Confirmar Contraseña">
             <br><br>
             <div class="col-xs-12">
-              <button type="submit" class="btn btn-primary1 col-xs-6">Guardar</button>
-              <button type="reset" class="btn btn-primary1 col-xs-6">Limpiar</button>
+              <button type="submit" class="btn btn-primary1 col-xs-6 BotonLogIn-Registro">Guardar</button>
+              <button type="reset" class="btn btn-primary1 col-xs-6 BotonLogIn-Registro">Limpiar</button>
             </div>
           </form>
         </div>

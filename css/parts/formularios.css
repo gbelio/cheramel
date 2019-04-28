@@ -8,7 +8,7 @@
 }
 
 .form{
-    width: 400px;
+    width: 350px;
 }
 
 .sesion {
@@ -24,6 +24,10 @@
     width: 200px;
   }
 
+.BotonLogIn-Registro{
+    width: 173px;
+}
+
 .btn-primary {
     background-color: #b2dfdb;
     border: 0;
@@ -33,7 +37,7 @@
     background-color: #b2dfdb;
     border: 0;
     color: white;
-    width: 198px;
+    
 }
 
 .avatar {
