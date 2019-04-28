@@ -1,0 +1,22 @@
+@media (max-width: 575px) {
+    .__inner-img {
+        height: 160px;
+    }
+    .sizedesktop{
+        display: none;
+        flex-direction: row;
+        width: 30px;
+        padding-top: 15px;
+        margin: 10px;
+    }
+}
+
+@media (min-width: 575px) {
+    .sizemobile{
+        display: none;
+        flex-direction: row;
+        width: 30px;
+        padding-top: 15px;
+        margin: 10px;
+    }
+}

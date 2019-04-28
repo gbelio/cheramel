@@ -1,0 +1,33 @@
+header {
+  display: inline-block;
+  width: 100%;
+}
+
+.nombreSesion{
+  font-size: 15px;
+}
+
+  
+header nav ul {
+  background-color:#b2dfdb;
+  width: 100%;
+  display: flex;
+  list-style: none;
+  justify-content: flex-end;
+  padding: 5px;
+} 
+header nav ul li a {
+  list-style: none;
+  text-decoration: none;
+  color: white;
+  padding: 10px;
+  font-size: 10px;
+}
+nav {
+  background-color: white;
+}
+nav .navbar-brand h1 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-top: 8px;
+}

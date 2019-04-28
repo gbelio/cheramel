@@ -1,0 +1,31 @@
+.size{
+  flex-direction: row;
+  width: 30px;
+  padding-top: 15px;
+  margin: 10px;
+}
+
+.sizemobile{
+  flex-direction: row;
+  width: 30px;
+  padding-top: 15px;
+  margin: 10px;
+}
+
+.sizedesktop{
+  flex-direction: row;
+  width: 30px;
+  padding-top: 15px;
+  margin: 10px;
+}
+
+.redes{
+  display: flex;
+  justify-content: center;
+}
+
+.__wrapper-copyright {
+  padding: 10px 0;
+  background-color: #262626;
+  color: #8b8e94;
+}

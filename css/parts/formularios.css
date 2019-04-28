@@ -1,0 +1,46 @@
+.login {
+    padding: 2%;
+    display: flex;
+}
+
+.formulario {
+    justify-content: center;
+}
+
+.form{
+    width: 400px;
+}
+
+.sesion {
+    font-family: 'Satisfy';
+    font-size: 30px;
+}
+
+/*.olvidaste{
+    font-size: 12px;
+}*/
+
+.Restablecer{
+    width: 200px;
+  }
+
+.btn-primary {
+    background-color: #b2dfdb;
+    border: 0;
+}
+
+.btn-primary1 {
+    background-color: #b2dfdb;
+    border: 0;
+    color: white;
+    width: 150px;
+}
+
+.avatar {
+    height: 300px;
+    width: 300px;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    border-radius: 50%;
+    background-size: 100% auto;
+}

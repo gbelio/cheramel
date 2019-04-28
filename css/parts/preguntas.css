@@ -1,0 +1,15 @@
+.preguntas {
+    padding: 4%;
+}
+
+.preguntas p{
+    color: black;
+}
+.preguntas h1 {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.preguntas img{
+    width: 40px;
+}

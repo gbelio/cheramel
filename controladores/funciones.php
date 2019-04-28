@@ -1,6 +1,8 @@
 <?php
 session_start();
 
+/*VALIDACIONES - VALIDACIONES - VALIDACIONES - VALIDACIONES - VALIDACIONES*/
+/*VALIDACIONES - VALIDACIONES - VALIDACIONES - VALIDACIONES - VALIDACIONES*/
 function dd($valor){
     echo "<pre>";
         var_dump($valor);
@@ -89,10 +91,8 @@ function inputUsuario($campo){
     }
 }
 
-function previousInput($campo){
-    return $_SESSION[$campo];
-}
-
+/*CREAR REGISTRO - CREAR REGISTRO - CREAR REGISTRO - CREAR REGISTRO - CREAR REGISTRO -*/
+/*CREAR REGISTRO - CREAR REGISTRO - CREAR REGISTRO - CREAR REGISTRO - CREAR REGISTRO -*/
 function armarRegistro($datos,$avatarUsuario){
     $usuario = [
         "nombre"=>$datos["nombre"],
@@ -105,10 +105,48 @@ function armarRegistro($datos,$avatarUsuario){
     return $usuario;
 }
 
+/*SESSION SESSION SESSION SESSION SESSION SESSION SESSION SESSION SESSION SESSION SESSION*/
+/*SESSION SESSION SESSION SESSION SESSION SESSION SESSION SESSION SESSION SESSION SESSION*/
+
+function crearSesion($usuario, $datos){
+    $_SESSION["nombre"]=$usuario["nombre"];
+    $_SESSION["apellido"]=$usuario["apellido"];
+    $_SESSION["email"]=$usuario["email"];
+    $_SESSION["privilegios"]=$usuario["privilegios"];
+    $_SESSION["avatar"]=$usuario["avatar"];
+    
+    if (isset($datos['recordarme'])){
+        setcookie("password",$datos["passwordLogIn"],time()+3600);
+        setcookie("email",$usuario["email"],time()+3600);
+    }
+}
+
+/*COOKIES COOKIES COOKIES COOKIES COOKIES COOKIES COOKIES COOKIES COOKIES COOKIES COOKIES*/
+/*COOKIES COOKIES COOKIES COOKIES COOKIES COOKIES COOKIES COOKIES COOKIES COOKIES COOKIES*/
+
+function restaurarSesion($COOKIE){
+    if (count($COOKIE) > 1){
+        $usuario = buscarEmail($COOKIE["email"]);
+        if($usuario ==null){
+            $errores["email"]="Usted no esta registrado";
+        }else {
+            if(password_verify($COOKIE["password"],$usuario["password"])===false){
+            $errores["password"]= "Datos incorrectos";
+            }else {
+            crearSesion($usuario,$COOKIE);
+            }
+        }
+    }
+}
+
+/*CRUD CRUD CRUD CRUD CRUD CRUD CRUD CRUD CRUD CRUD CRUD CRUD CRUD CRUD CRUD*/
+/*CRUD CRUD CRUD CRUD CRUD CRUD CRUD CRUD CRUD CRUD CRUD CRUD CRUD CRUD CRUD*/
+
 function guardar($usuario){
     $jsusuario = json_encode($usuario);
     file_put_contents('usuarios.json',$jsusuario. PHP_EOL, FILE_APPEND);
 }
+
 
 function guardarArchivo($imagen, $datos){
     $emailUsuario = $datos["email"];
@@ -142,34 +180,6 @@ function abrirBaseDatos(){
         $baseDatosUsuarios[]=json_decode($usuario,true);
     }
     return $baseDatosUsuarios;
-}
-
-function crearSesion($usuario, $datos){
-    $_SESSION["nombre"]=$usuario["nombre"];
-    $_SESSION["apellido"]=$usuario["apellido"];
-    $_SESSION["email"]=$usuario["email"];
-    $_SESSION["privilegios"]=$usuario["privilegios"];
-    $_SESSION["avatar"]=$usuario["avatar"];
-    
-    if (isset($datos['recordarme'])){
-        setcookie("password",$datos["passwordLogIn"],time()+3600);
-        setcookie("email",$usuario["email"],time()+3600);
-    }
-}
-
-function restaurarSesion($COOKIE){
-    if (count($COOKIE) > 1){
-        $usuario = buscarEmail($COOKIE["email"]);
-        if($usuario ==null){
-            $errores["email"]="Usted no esta registrado";
-        }else {
-            if(password_verify($COOKIE["password"],$usuario["password"])===false){
-            $errores["password"]= "Datos incorrectos";
-            }else {
-            crearSesion($usuario,$COOKIE);
-            }
-        }
-    }
 }
 
 function editarUsuario($email){
