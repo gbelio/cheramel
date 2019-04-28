@@ -16,9 +16,9 @@
     font-size: 30px;
 }
 
-/*.olvidaste{
+.olvidaste{
     font-size: 12px;
-}*/
+}
 
 .Restablecer{
     width: 200px;
@@ -33,7 +33,7 @@
     background-color: #b2dfdb;
     border: 0;
     color: white;
-    width: 150px;
+    width: 200px;
 }
 
 .avatar {
