@@ -1,7 +1,7 @@
 <?php
 include_once("controladores/funciones.php");
 if($_POST){
-  $datos=($_POST);
+  $datos= trimer($_POST);
   $errores=validar($datos);
   $avatarUsuario = guardarArchivo($_FILES, $_POST);
   if (count($errores) == 0){
@@ -9,7 +9,7 @@ if($_POST){
       if($usuario != null){
         $errores["email"]="La cuenta <b>".$_POST["email"]."</b> se encuentra registrada.";
       }else{
-        $registro=armarRegistro($_POST, $avatarUsuario);
+        $registro=armarRegistro($datos, $avatarUsuario);
         guardar($registro);
         header("location:login.php");
         exit;

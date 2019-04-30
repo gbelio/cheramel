@@ -1,9 +1,9 @@
 <?php
 include_once("controladores/funciones.php");
 if($_POST){
-  $datos=($_POST);
+  $datos=trimer($_POST);
   $errores=validar($datos);
-  $avatarUsuario = guardarArchivo($_FILES, $_POST);
+  $avatarUsuario = guardarArchivo($_FILES, $datos);
   if (count($errores) == 0){
     editarUsuario($_SESSION["email"]);
     $usuario=buscarEmail($_SESSION["email"]);

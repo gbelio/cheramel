@@ -16,15 +16,20 @@ function dump($valor){
     echo "</pre>";
 }
 
+function trimer($POST){
+    foreach ($POST as $key => $value) {
+        $POST[$key] = trim($value);
+    }
+    return $POST;
+}
+
 function validar($datos){
     $errores=[];
     if(isset($datos["nombre"])){
         $nombre = trim($datos["nombre"]);
-    
         if(empty($nombre)){
         $errores["nombre"]= "Completar campo NOMBRE";
         }
-
         if(is_numeric($nombre)){
             $errores["nombre"]= "No se admiten números en el campo NOMBRE";
             }
@@ -32,7 +37,6 @@ function validar($datos){
 
     if(isset($datos["apellido"])){
         $apellido = trim($datos["apellido"]);
-    
         if(empty($apellido)){
         $errores["apellido"]= "Completar campo APELLIDO";
         }
@@ -187,17 +191,18 @@ function editarUsuario($email){
     rename ("usuarios.json", "backusuarios.json");
     touch ("usuarios.json");
     unlink ("backusuarios.json");
+    $user = trimer($_POST);
     foreach ($baseDatosUsuarios as $usuario) {
         if($usuario["email"] === $email){
-            $usuario["nombre"] = $_POST["nombre"];
-            $usuario["apellido"] = $_POST["apellido"];
-            $usuario["email"] = $_POST["email"];
+            $usuario["nombre"] = $user["nombre"];
+            $usuario["apellido"] = $user["apellido"];
+            $usuario["email"] = $user["email"];
             if ($_FILES["avatar"]["size"]>0){
-                $usuario["avatar"] = guardarArchivo($_FILES, $_POST);
+                $usuario["avatar"] = guardarArchivo($_FILES, $user);
             }
-            if (!empty($_POST["password"])){
-            if ($_POST["password"] == $_POST["repassword"])
-                $usuario["password"] = password_hash($_POST["password"],PASSWORD_DEFAULT); 
+            if (!empty($user["password"])){
+            if ($user["password"] == $user["repassword"])
+                $usuario["password"] = password_hash($user["password"],PASSWORD_DEFAULT); 
             }
         }
         $jsusuario = json_encode($usuario);

@@ -4,8 +4,11 @@
       <br>
       <h2 class="sesion">Bienvenid@ <?=$_SESSION["nombre"];?></h2>
       <br><br>
-      <div class="avatar" style="background-image: url(imagenes/<?=$_SESSION["avatar"];?>)"></div>  
-      <br><br>
+      <?php
+        $ext = pathinfo($_SESSION["avatar"],PATHINFO_EXTENSION);
+        if($ext == "png" || $ext == "jpg"):
+          echo "<div class='avatar' style='background-image: url(imagenes/";?><?=$_SESSION['avatar']?><?=") '></div><br><br>"?>
+          <?php endif; ?>      
       <?php
         include_once("parts/mostrarErrores.php");       
       ?>
