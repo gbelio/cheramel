@@ -1,21 +1,21 @@
 <footer>
   <section class="__wrapper-contact">
     <div class="row __max-width px-md-4">
-      <article class="col-12 text-center col-sm-6 text-sm-left text-md-left col-lg-3">
+      <article class="col-12 text-center col-sm-6 text-sm-left text-md-left col-lg-3 textofoot">
         <h4>CONTACTANOS</h4>
         <p><strong>cherameliedg@gmail.com</strong><br>☏ +54 11 1234 5678</p>
       </article>
-      <article class="col-12 text-center col-sm-6 text-sm-left text-md-left col-lg-3">
+      <article class="col-12 text-center col-sm-6 text-sm-left text-md-left col-lg-3 textofoot">
         <h4>DIRECCION</h4>
         <p><strong>Calle Falsa 123</strong><br>CABA</p>
       </article>
-      <article class="col-12 text-center col-sm-6 text-sm-left text-md-left col-lg-3">
+      <article class="col-12 text-center col-sm-6 text-sm-left text-md-left col-lg-3 textofoot">
         <h4>HORARIOS</h4>
         <p><strong>Lunes a Viernes</strong><br>De 9:00 a 20:00 hs</p>
       </article>
-      <article class="col-12 text-center col-sm-6 text-sm-left text-md-left col-lg-3">
-        <h4>NEWSLETTER</h4>
-        <p><strong>Subscribite para recibir promos!</strong><br></p>
+      <article class="col-12 text-center col-sm-6 text-sm-left text-md-left col-lg-3 textofoot">
+        <h4>PROMOCIONES</h4>
+        <p><strong>12 Cuotas sin interes </strong><br>VIERNES, SÁBADOS Y DOMINGOS</p>
       </article>
       <article class="col-12 col-sm-12 col-lg-12">
         <div class="redes">

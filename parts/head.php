@@ -3,6 +3,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Cheramel Design</title>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Arimo:400,700|Great+Vibes" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Julius+Sans+One" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Taviraj" rel="stylesheet">

@@ -1,3 +1,7 @@
+footer p {
+  font-size: 10px;
+}
+
 .size{
   flex-direction: row;
   width: 30px;

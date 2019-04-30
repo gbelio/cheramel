@@ -2,4 +2,23 @@
     margin-top: 20px;
     margin-bottom: 20px;
   }
+
+  .text-black {
+    color:grey;
+    list-style: none;
+    text-decoration: none;
+    text-align: center;
+    font-size: 13px;
+  }
+  
+  .cajadetexto{
+    display: flex;
+    justify-content: center;
+}
+  .destacados {
+      font-size: 20px;
+      text-align: center;
+      align-content: center;
+      padding: 10px;
+    }
   
