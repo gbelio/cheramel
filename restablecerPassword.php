@@ -1,11 +1,12 @@
 <?php
+require 'loader.php';
 include_once("controladores/funciones.php");
 if($_POST){
-    $usuario = buscarEmail($_POST["email"]);
+    $usuario = $db->buscarEmail($_POST["email"]);
     if($usuario ==null){
       $errores["email"]="Usted no se encuentra registrado";
     }else{
-      $nuevaPassword = recuperarPassword($_POST["email"]);
+      $nuevaPassword = $db->recuperarPassword($_POST["email"]);
       }
     }
 ?>

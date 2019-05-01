@@ -1,4 +1,5 @@
 <?php
+require 'loader.php';
 include_once("controladores/funciones.php");
 ?>
 <!DOCTYPE html>
@@ -8,7 +9,7 @@ include_once("controladores/funciones.php");
   ?>
   <body class="bodylogin">
     <?php
-      restaurarSesion($_COOKIE);
+      $db->restaurarSesion($_COOKIE);
       if (count($_SESSION) != 0){
         include_once("parts/headerLogOut.php");
       }else{

@@ -1,13 +1,14 @@
 <?php
+require 'loader.php';
 include_once("controladores/funciones.php");
 if($_POST){
-  $datos=trimer($_POST);
-  $errores=validar($datos);
-  $avatarUsuario = guardarArchivo($_FILES, $datos);
+  $datos=$validator->trimer($_POST);
+  $errores=$validator->validar($datos);
+  $avatarUsuario = $db->guardarArchivo($_FILES, $datos);
   if (count($errores) == 0){
-    editarUsuario($_SESSION["email"]);
-    $usuario=buscarEmail($_SESSION["email"]);
-    crearSesion($usuario,$_POST);
+    $db->editarUsuario($_SESSION["email"],$datos);
+    $usuario=$db->buscarEmail($_SESSION["email"]);
+    Session::crearSesion($usuario,$datos);
     sleep(1);
     header("location:perfil.php");
   }
@@ -20,7 +21,7 @@ if($_POST){
   ?>
   <body>
     <?php
-      restaurarSesion($_COOKIE);
+      $db->restaurarSesion($_COOKIE);
       if (count($_SESSION) != 0){
         include_once("parts/headerLogOut.php");
         include_once("parts/nav.php");

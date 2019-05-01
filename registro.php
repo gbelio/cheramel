@@ -1,19 +1,20 @@
 <?php
+require 'loader.php';
 include_once("controladores/funciones.php");
 if($_POST){
-  $datos= trimer($_POST);
-  $errores=validar($datos);
-  $avatarUsuario = guardarArchivo($_FILES, $_POST);
+  $datos=$validator->trimer($_POST);
+  $errores=$validator->validar($datos);
+  $avatarUsuario = $db->guardarArchivo($_FILES, $datos);
   if (count($errores) == 0){
-    $usuario = buscarEmail($_POST["email"]);
-      if($usuario != null){
-        $errores["email"]="La cuenta <b>".$_POST["email"]."</b> se encuentra registrada.";
-      }else{
-        $registro=armarRegistro($datos, $avatarUsuario);
-        guardar($registro);
-        header("location:login.php");
-        exit;
-      }
+    $usuario = $db->buscarEmail($datos["email"]);
+    if($usuario != null){
+      $errores["email"]="La cuenta <b>".$datos["email"]."</b> se encuentra registrada.";
+    }else{
+      $registro=$factory->armarRegistro($datos, $avatarUsuario);
+      $db->guardar($registro);
+      header("location:login.php");
+      exit;
+    }
   }
 }
 ?>
@@ -24,7 +25,7 @@ if($_POST){
   ?>
   <body class="bodyregistro" >
     <?php
-      restaurarSesion($_COOKIE);
+      $db->restaurarSesion($_COOKIE);
       if (count($_SESSION) != 0){
         header("location:perfil.php");
       }else{

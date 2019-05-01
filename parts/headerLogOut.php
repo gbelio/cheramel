@@ -1,3 +1,5 @@
+<?php
+?>
 <header class="encabezado">
   <nav class="main-nav">
     <ul>
