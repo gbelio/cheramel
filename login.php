@@ -2,8 +2,6 @@
 require 'loader.php';
 include_once("controladores/funciones.php");
 if($_POST){
-  $errores=$validator->validar($_POST);
-  if(count($errores)===0){
     $usuario = $db->buscarEmail($_POST["email"]);
     if($usuario ==null){
       $errores["email"]="Usted no esta registrado";
@@ -16,7 +14,6 @@ if($_POST){
       }
     }
   }
-}
 ?>
 <!DOCTYPE html>
 <html lang="es">

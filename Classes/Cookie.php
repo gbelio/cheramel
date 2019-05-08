@@ -7,6 +7,7 @@ class Cookie
                                 string $value, 
                                 int $duration
     ): void
+    
     {
         setcookie($name, $value, time() + $duration);
     }

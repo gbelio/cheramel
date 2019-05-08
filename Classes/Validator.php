@@ -3,20 +3,20 @@
 class Validator
 {
     /*Metodo funcionando*/
-    public function trimer($POST)
+    public function trimer(User $user): void
     {
-        foreach ($POST as $key => $value) {
-            $POST[$key] = trim($value);
-        }
-        return $POST;
+            $user->setNombre(trim($user->getNombre()));
+            $user->setApellido(trim($user->getApellido()));
+            $user->setEmail(trim($user->getEmail()));
+            $user->setPassword(trim($user->getPassword()));
     }
     /*Metodo funcionando*/
-    public function validar($datos)
+    public function validar(User $user,string $repassword)
     {
     $errores=[];
     /*VALIDA NOMBRE*/
-    if(isset($datos["nombre"])){
-        $nombre = $datos["nombre"];
+    $nombre = $user->getNombre();
+    if($nombre !== null){
         if(empty($nombre)){
         $errores["nombre"]= "Completar campo NOMBRE";
         }
@@ -26,8 +26,8 @@ class Validator
     }
 
     /*VALIDA APELLIDO*/
-    if(isset($datos["apellido"])){
-        $apellido = $datos["apellido"];
+    $apellido = $user->getApellido();
+    if($apellido !== null){
         if(empty($apellido)){
         $errores["apellido"]= "Completar campo APELLIDO";
         }
@@ -37,15 +37,15 @@ class Validator
     }
 
     /*VALIDA EMAIL*/
-    $email = $datos["email"];
+    $email = $user->getEmail();
     if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
         $errores["email"]="Ingrese un EMAIL valido";
     }
 
     /*VALIDA PASSWORD*/
-    if (!empty($datos["password"]) || !empty($datos["repassword"])){
-        $password = $datos["password"];
-        $repassword = $datos["repassword"];
+    $password = $user->getPassword();
+    
+    if (!empty($password) || !empty($repassword)){
         if(isset($password)){
             if(empty($password)){
                 $errores["password"]= "Completar campo CONTRASEÑA";

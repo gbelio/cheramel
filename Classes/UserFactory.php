@@ -8,19 +8,17 @@ class UserFactory
             'email' => $user->getEmail(),
             'password' => HashPassword::hash($user->getPassword())
         ];
-
         return $userArray;
     }*/
 
-    public function armarRegistro($datos,$avatarUsuario)
+    public function armarRegistro(User $user)
     {
         $usuario = [
-            "nombre"=>$datos["nombre"],
-            "apellido"=>$datos["apellido"],
-            "email"=>$datos["email"],
-            "password"=> password_hash($datos["password"],PASSWORD_DEFAULT),
-            "avatar"=>$avatarUsuario,
-            "privilegios"=>1
+            "nombre"=>$user->getNombre(),
+            "apellido"=>$user->getApellido(),
+            "email"=>$user->getEmail(),
+            "password"=> password_hash($user->getPassword(),PASSWORD_DEFAULT),
+            "avatar"=>$user->getAvatar(),
         ];
         return $usuario;
     }

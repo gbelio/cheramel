@@ -2,15 +2,15 @@
 require 'loader.php';
 include_once("controladores/funciones.php");
 if($_POST){
-  $datos=$validator->trimer($_POST);
-  $errores=$validator->validar($datos);
-  $avatarUsuario = $db->guardarArchivo($_FILES, $datos);
+  $user = new User ($_POST['nombre'],$_POST['apellido'],$_POST['email'],$_POST['password']);
+  $validator->trimer($user);
+  $errores=$validator->validar($user,$_POST["repassword"]);
   if (count($errores) == 0){
-    $usuario = $db->buscarEmail($datos["email"]);
-    if($usuario != null){
-      $errores["email"]="La cuenta <b>".$datos["email"]."</b> se encuentra registrada.";
+    $db->guardarArchivo($_FILES, $user);
+    if($db->buscarEmail($user->getEmail()) != null){
+      $errores["email"]="La cuenta <b>".$user->getEmail()."</b> se encuentra registrada.";
     }else{
-      $registro=$factory->armarRegistro($datos, $avatarUsuario);
+      $registro=$factory->armarRegistro($user);
       $db->guardar($registro);
       header("location:login.php");
       exit;
