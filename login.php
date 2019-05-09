@@ -2,14 +2,19 @@
 require 'loader.php';
 include_once("controladores/funciones.php");
 if($_POST){
-    $usuario = $db->buscarEmail($_POST["email"]);
+    $user = new User ("login", "login",$_POST['email'],$_POST['passwordLogIn']);
+    $usuario = $db->buscarEmail($user->getEmail());
+    $user->setNombre($usuario['nombre']);
+    $user->setApellido($usuario['apellido']);
+    $user->setAvatar($usuario['avatar']);
+    //$usuario = $db->buscarEmail($_POST["email"]);
     if($usuario ==null){
       $errores["email"]="Usted no esta registrado";
     }else{
-      if($auth->validatePassword($_POST["passwordLogIn"],$usuario["password"])===false){
+      if($auth->validatePassword($user->getPassword(),$usuario["password"])===false){
         $errores["password"]= "Datos incorrectos";
       }else{
-        Session::crearSesion($usuario,$_POST);
+        Session::crearSesion($user);
         header("location: perfil.php");
       }
     }

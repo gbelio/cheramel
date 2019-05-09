@@ -10,6 +10,7 @@ if($_POST){
     if($db->buscarEmail($user->getEmail()) != null){
       $errores["email"]="La cuenta <b>".$user->getEmail()."</b> se encuentra registrada.";
     }else{
+      $user->setPassword(HashPassword::hash($user->getPassword()));
       $registro=$factory->armarRegistro($user);
       $db->guardar($registro);
       header("location:login.php");

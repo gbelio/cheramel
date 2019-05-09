@@ -4,13 +4,12 @@ class Session
 {
     static public $isSessionStarted = false;
 
-    static public function crearSesion($usuario, $datos)
+    static public function crearSesion(User $user)
     {
-        $_SESSION["nombre"]=$usuario["nombre"];
-        $_SESSION["apellido"]=$usuario["apellido"];
-        $_SESSION["email"]=$usuario["email"];
-        $_SESSION["privilegios"]=$usuario["privilegios"];
-        $_SESSION["avatar"]=$usuario["avatar"];
+        $_SESSION["nombre"]=$user->getNombre();
+        $_SESSION["apellido"]=$user->getApellido();
+        $_SESSION["email"]=$user->getEmail();
+        $_SESSION["avatar"]=$user->getAvatar();
         
         if (isset($datos['recordarme'])){
             setcookie("password",$datos["passwordLogIn"],time()+3600);

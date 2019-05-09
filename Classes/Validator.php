@@ -44,7 +44,6 @@ class Validator
 
     /*VALIDA PASSWORD*/
     $password = $user->getPassword();
-    
     if (!empty($password) || !empty($repassword)){
         if(isset($password)){
             if(empty($password)){

@@ -3,12 +3,12 @@
 abstract class Database
 {
     abstract public function guardar(array $usuarioArray);
-    abstract public function editarUsuario($email, $datos);
+    abstract public function editarUsuario(User $user, $password, UserFactory $factory, Array $usuario);
     abstract public function delete();
     abstract public function abrirBaseDatos();
 
     public function guardarArchivo($imagen, $user)
-    {
+    {   
         $ext=pathinfo($imagen["avatar"]["name"], PATHINFO_EXTENSION);
         $avatarUsuario = $user->getEmail().".".$ext;
         $archivo=$imagen["avatar"]["tmp_name"];

@@ -2,13 +2,13 @@
 require 'loader.php';
 include_once("controladores/funciones.php");
 if($_POST){
-  $datos=$validator->trimer($_POST);
-  $errores=$validator->validar($datos);
-  $avatarUsuario = $db->guardarArchivo($_FILES, $datos);
+  $user = new User ($_POST['nombre'],$_POST['apellido'],$_POST['email'],$_POST['password']);
+  $validator->trimer($user);
+  $errores=$validator->validar($user,$_POST["repassword"]);
   if (count($errores) == 0){
-    $db->editarUsuario($_SESSION["email"],$datos);
-    $usuario=$db->buscarEmail($_SESSION["email"]);
-    Session::crearSesion($usuario,$datos);
+    $usuario=$db->buscarEmail($user->getEmail());
+    $db->editarUsuario($user,$_POST['repassword'],$factory,$usuario);
+    Session::crearSesion($user);
     sleep(1);
     header("location:perfil.php");
   }

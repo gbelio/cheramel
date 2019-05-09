@@ -17,8 +17,8 @@ class UserFactory
             "nombre"=>$user->getNombre(),
             "apellido"=>$user->getApellido(),
             "email"=>$user->getEmail(),
-            "password"=> password_hash($user->getPassword(),PASSWORD_DEFAULT),
-            "avatar"=>$user->getAvatar(),
+            "password"=> $user->getPassword(),//password_hash($user->getPassword(),PASSWORD_DEFAULT),
+            "avatar"=>$user->getAvatar()
         ];
         return $usuario;
     }

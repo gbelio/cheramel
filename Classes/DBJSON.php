@@ -37,26 +37,34 @@ class DBJSON extends Database
         return $baseDatosUsuarios;
     }
 
-    public function editarUsuario($email, $datos)
+    public function editarUsuario($user,$repassword,$factory,$usuarioArr/*$email, $datos*/)
     {
+        
         $baseDatosUsuarios = $this->abrirBaseDatos();
         rename ("usuarios.json", "backusuarios.json");
         touch ("usuarios.json");
         unlink ("backusuarios.json");
         foreach ($baseDatosUsuarios as $usuario) {
-            if($usuario["email"] === $email){
-                $usuario["nombre"] = $datos["nombre"];
-                $usuario["apellido"] = $datos["apellido"];
-                $usuario["email"] = $datos["email"];
+            if($usuario["email"] == $user->getEmail()){
+                $user->setNombre($user->getNombre());
+                $user->setApellido($user->getApellido());
+                $user->setEmail($user->getEmail());
                 if ($_FILES["avatar"]["size"]>0){
-                    $usuario["avatar"] = $this->guardarArchivo($_FILES, $datos);
+                    $this->guardarArchivo($_FILES, $user);
+                }else{
+                    $user->setAvatar($usuarioArr['avatar']);
                 }
-                if (!empty($datos["password"])){
-                if ($datos["password"] == $datos["repassword"])
-                    $usuario["password"] = password_hash($datos["password"],PASSWORD_DEFAULT); 
+                if (!empty($_POST['password'])){
+                    if ($user->getPassword() == $repassword){
+                        $user->setPassword(password_hash($user->getPassword(), PASSWORD_DEFAULT));
+                    }
+
+                }else{
+                    $user->setPassword($usuarioArr['password']);
                 }
             }
-            $this->guardar($usuario);
+            $usuarioArray = $factory->armarRegistro($user);
+            $this->guardar($usuarioArray);
             /*$jsusuario = json_encode($usuario);
             file_put_contents($this->file,$jsusuario. PHP_EOL, FILE_APPEND);*/
         }
