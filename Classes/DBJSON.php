@@ -37,7 +37,7 @@ class DBJSON extends Database
         return $baseDatosUsuarios;
     }
 
-    public function editarUsuario($user,$repassword,$factory,$usuarioArr/*$email, $datos*/)
+    public function editarUsuario($user,$repassword,$factory,$usuarioArr)
     {
         
         $baseDatosUsuarios = $this->abrirBaseDatos();
@@ -65,8 +65,6 @@ class DBJSON extends Database
             }
             $usuarioArray = $factory->armarRegistro($user);
             $this->guardar($usuarioArray);
-            /*$jsusuario = json_encode($usuario);
-            file_put_contents($this->file,$jsusuario. PHP_EOL, FILE_APPEND);*/
         }
     }
 
@@ -101,7 +99,7 @@ class DBJSON extends Database
         return $randomPassword;
     }
 
-    public function delete()
+    public function borrar()
     {
         //...
     }

@@ -1,6 +1,8 @@
 <?php
 require 'loader.php';
-include_once("controladores/funciones.php");
+if (count($_SESSION) != 0) {
+  redirect("perfil.php");
+}
 if($_POST){
     $usuario = $db->buscarEmail($_POST["email"]);
     if($usuario ==null){

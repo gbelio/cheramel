@@ -1,7 +1,7 @@
 <?php
 require 'loader.php';
-include_once("controladores/funciones.php");
 if($_POST){
+  //Pasar 'repassword' dentro del objeto User.
   $user = new User ($_POST['nombre'],$_POST['apellido'],$_POST['email'],$_POST['password']);
   $validator->trimer($user);
   $errores=$validator->validar($user,$_POST["repassword"]);
@@ -10,7 +10,7 @@ if($_POST){
     $db->editarUsuario($user,$_POST['repassword'],$factory,$usuario);
     Session::crearSesion($user);
     sleep(1);
-    header("location:perfil.php");
+    redirect("perfil.php");
   }
 }
 ?>

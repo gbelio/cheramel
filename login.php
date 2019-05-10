@@ -1,21 +1,20 @@
 <?php
 require 'loader.php';
-include_once("controladores/funciones.php");
 if($_POST){
+    //Cambiar la clase User para que los atributos 'nombre', 'apellido' y 'repassword' sean 'null'.
     $user = new User ("login", "login",$_POST['email'],$_POST['passwordLogIn']);
     $usuario = $db->buscarEmail($user->getEmail());
     $user->setNombre($usuario['nombre']);
     $user->setApellido($usuario['apellido']);
     $user->setAvatar($usuario['avatar']);
-    //$usuario = $db->buscarEmail($_POST["email"]);
-    if($usuario ==null){
+    if($usuario == null){
       $errores["email"]="Usted no esta registrado";
     }else{
       if($auth->validatePassword($user->getPassword(),$usuario["password"])===false){
         $errores["password"]= "Datos incorrectos";
       }else{
         Session::crearSesion($user);
-        header("location: perfil.php");
+        redirect("perfil.php");
       }
     }
   }

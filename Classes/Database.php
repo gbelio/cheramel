@@ -4,7 +4,7 @@ abstract class Database
 {
     abstract public function guardar(array $usuarioArray);
     abstract public function editarUsuario(User $user, $password, UserFactory $factory, Array $usuario);
-    abstract public function delete();
+    abstract public function borrar();
     abstract public function abrirBaseDatos();
 
     public function guardarArchivo($imagen, $user)

@@ -1,7 +1,7 @@
 <?php
 require 'loader.php';
-include_once("controladores/funciones.php");
 if($_POST){
+    //Pasar 'repassword' dentro del objeto User.
   $user = new User ($_POST['nombre'],$_POST['apellido'],$_POST['email'],$_POST['password']);
   $validator->trimer($user);
   $errores=$validator->validar($user,$_POST["repassword"]);
