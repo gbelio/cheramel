@@ -99,7 +99,7 @@ class DBJSON extends Database
         return $randomPassword;
     }
 
-    public function borrar()
+    public function borrarUsuario()
     {
         //...
     }
