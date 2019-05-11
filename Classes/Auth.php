@@ -7,12 +7,12 @@ class Auth
         Session::set('email', $email);
         Cookie::set('email', $email, 3600);
     }
-    /*Metodo funcionando*/
+
     public function validatePassword($password, $hash)
     {
         return password_verify($password, $hash);
     }
-    /*Metodo funcionando*/
+
     public function logout()
     {
         if(!$_SESSION) {
@@ -23,5 +23,4 @@ class Auth
         setcookie("email","",time()-1);
         setcookie("nombre","",time()-1);
     }
-
 }

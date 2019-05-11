@@ -9,9 +9,10 @@ class Validator
             $user->setApellido(trim($user->getApellido()));
             $user->setEmail(trim($user->getEmail()));
             $user->setPassword(trim($user->getPassword()));
+            $user->setRepassword(trim($user->getRepassword()));
     }
-    /*Metodo funcionando*/
-    public function validar(User $user,string $repassword)
+    
+    public function validar(User $user)
     {
     $errores=[];
     /*VALIDA NOMBRE*/
@@ -44,12 +45,13 @@ class Validator
 
     /*VALIDA PASSWORD*/
     $password = $user->getPassword();
+    $repassword = $user->getRepassword();
     if (!empty($password) || !empty($repassword)){
         if(isset($password)){
             if(empty($password)){
                 $errores["password"]= "Completar campo CONTRASEÑA";
             }elseif (strlen($password)<3) {
-                $errores["password"]="La contraseña debe tener como mínimo 6 caracteres";
+                $errores["password"]="La contraseña debe tener como mínimo 3 caracteres";
             }
         }
 
@@ -58,14 +60,8 @@ class Validator
                 $errores["repassword"]="Las contraseñas no coinciden";
             }
         }
-
-        if(isset($datos["passwordLogIn"])){
-            $passwordLogIn=$datos["passwordLogIn"];
-            if(empty($passwordLogIn)){
-            $errores["passwordLogIn"]= "Completar campo CONTRASEÑA";
-            }
-        }
     }
+
     /*VALIDA AVATAR*/
     if(isset($_FILES["avatar"]["size"])){
         if($_FILES["avatar"]["size"] != 0){

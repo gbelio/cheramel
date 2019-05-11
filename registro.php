@@ -1,10 +1,15 @@
 <?php
 require 'loader.php';
 if($_POST){
-    //Pasar 'repassword' dentro del objeto User.
-  $user = new User ($_POST['nombre'],$_POST['apellido'],$_POST['email'],$_POST['password']);
+  $user = new User (
+    $_POST['email'],
+    $_POST['password'],
+    $_POST["repassword"],
+    $_POST['nombre'],
+    $_POST['apellido']
+  );
   $validator->trimer($user);
-  $errores=$validator->validar($user,$_POST["repassword"]);
+  $errores=$validator->validar($user);
   if (count($errores) == 0){
     $db->guardarArchivo($_FILES, $user);
     if($db->buscarEmail($user->getEmail()) != null){
@@ -13,7 +18,7 @@ if($_POST){
       $user->setPassword(HashPassword::hash($user->getPassword()));
       $registro=$factory->armarRegistro($user);
       $db->guardar($registro);
-      header("location:login.php");
+      redirect("login.php");
       exit;
     }
   }

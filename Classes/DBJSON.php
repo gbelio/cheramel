@@ -37,34 +37,24 @@ class DBJSON extends Database
         return $baseDatosUsuarios;
     }
 
-    public function editarUsuario($user,$repassword,$factory,$usuarioArr)
+    public function editarUsuario($user,$factory)
     {
-        
         $baseDatosUsuarios = $this->abrirBaseDatos();
-        rename ("usuarios.json", "backusuarios.json");
-        touch ("usuarios.json");
-        unlink ("backusuarios.json");
-        foreach ($baseDatosUsuarios as $usuario) {
+        $this->regenerarJSON();
+        foreach ($baseDatosUsuarios as $usuario){
             if($usuario["email"] == $user->getEmail()){
                 $user->setNombre($user->getNombre());
                 $user->setApellido($user->getApellido());
                 $user->setEmail($user->getEmail());
                 if ($_FILES["avatar"]["size"]>0){
                     $this->guardarArchivo($_FILES, $user);
-                }else{
-                    $user->setAvatar($usuarioArr['avatar']);
                 }
-                if (!empty($_POST['password'])){
-                    if ($user->getPassword() == $repassword){
-                        $user->setPassword(password_hash($user->getPassword(), PASSWORD_DEFAULT));
+                if ($user->getRepassword() != null){
+                    $user->setPassword(password_hash($user->getRepassword(), PASSWORD_DEFAULT));
                     }
-
-                }else{
-                    $user->setPassword($usuarioArr['password']);
-                }
+                $usuario = $factory->armarRegistro($user);
             }
-            $usuarioArray = $factory->armarRegistro($user);
-            $this->guardar($usuarioArray);
+            $this->guardar($usuario);
         }
     }
 
@@ -87,8 +77,7 @@ class DBJSON extends Database
     public function recuperarPassword($email)
     {
         $baseDatosUsuarios = $this->abrirBaseDatos();
-        rename ("usuarios.json", "backusuarios.json");
-        touch ("usuarios.json");
+        $this->regenerarJSON();
         foreach ($baseDatosUsuarios as $usuario) {
             if($usuario["email"] === $email){
                 $randomPassword = substr(MD5(rand(2937,9999)), 0, 6);
@@ -99,11 +88,16 @@ class DBJSON extends Database
         return $randomPassword;
     }
 
-    public function borrarUsuario()
-    {
-        //...
+    public function regenerarJSON(){
+        rename ("usuarios.json", "backusuarios.json");
+        touch ("usuarios.json");
+        unlink ("backusuarios.json");
     }
 
+    public function borrarUsuario()
+    {
+        
+    }
 
     public function getFile()
     {

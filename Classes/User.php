@@ -2,18 +2,26 @@
 
 class User
 {
-    private $nombre;
-    private $apellido;
     private $email;
     private $password;
+    private $repassword;
+    private $nombre;
+    private $apellido;
     private $avatar = null;
 
-    public function __construct(string $nombre, string $apellido, string $email, string $password)
+    public function __construct(
+        string $email,
+        string $password,
+        string $repassword = null,
+        string $nombre = null,
+        string $apellido = null
+    )
     {
-        $this->nombre = $nombre;
-        $this->apellido = $apellido;
         $this->email = $email;
         $this->password = $password;
+        $this->repassword = $repassword;
+        $this->nombre = $nombre;
+        $this->apellido = $apellido;
     }
  
     public function getEmail(): string
@@ -26,35 +34,35 @@ class User
         $this->email = $email;
     }
 
-    public function getPassword(): string
+    public function getPassword()
     {
         return $this->password;
     }
 
-    public function setPassword(string $password): void
+    public function setPassword($password): void
     {
         $this->password = $password;
 
     }
 
-    public function getNombre(): string
+    public function getNombre()
     {
         return $this->nombre;
     }
 
-    public function setNombre(string $nombre)
+    public function setNombre($nombre)
     {
         $this->nombre = $nombre;
 
         return $this;
     }
 
-    public function getApellido(): string
+    public function getApellido()
     {
         return $this->apellido;
     }
 
-    public function setApellido(string $apellido)
+    public function setApellido($apellido)
     {
         $this->apellido = $apellido;
 
@@ -69,6 +77,18 @@ class User
     public function setAvatar($avatar)
     {
         $this->avatar = $avatar;
+
+        return $this;
+    }
+
+    public function getRepassword()
+    {
+        return $this->repassword;
+    }
+
+    public function setRepassword($repassword)
+    {
+        $this->repassword = $repassword;
 
         return $this;
     }

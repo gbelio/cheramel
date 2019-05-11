@@ -1,13 +1,20 @@
 <?php
 require 'loader.php';
 if($_POST){
-  //Pasar 'repassword' dentro del objeto User.
-  $user = new User ($_POST['nombre'],$_POST['apellido'],$_POST['email'],$_POST['password']);
+  $user = new User (
+    $_POST['email'],
+    $_POST['password'],
+    $_POST['repassword'],
+    $_POST['nombre'],
+    $_POST['apellido']
+  );
   $validator->trimer($user);
-  $errores=$validator->validar($user,$_POST["repassword"]);
+  $errores=$validator->validar($user);
   if (count($errores) == 0){
     $usuario=$db->buscarEmail($user->getEmail());
-    $db->editarUsuario($user,$_POST['repassword'],$factory,$usuario);
+    $user->setAvatar($usuario['avatar']);
+    $user->setPassword($usuario['password']);
+    $db->editarUsuario($user,$factory);
     Session::crearSesion($user);
     sleep(1);
     redirect("perfil.php");

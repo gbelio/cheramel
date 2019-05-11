@@ -1,8 +1,7 @@
 <?php
 require 'loader.php';
 if($_POST){
-    //Cambiar la clase User para que los atributos 'nombre', 'apellido' y 'repassword' sean 'null'.
-    $user = new User ("login", "login",$_POST['email'],$_POST['passwordLogIn']);
+    $user = new User ($_POST['email'],$_POST['passwordLogIn']);
     $usuario = $db->buscarEmail($user->getEmail());
     $user->setNombre($usuario['nombre']);
     $user->setApellido($usuario['apellido']);
