@@ -4,7 +4,7 @@
         <h2 class="sesion">Iniciar Sesión</h2>
         <br>
         <div class="form-groups">
-          <input type="email" class="form-control" name="email" value="<?=isset($errores["email"])? "": inputUsuario("email");?>" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingresar correo" autofocus>
+          <input type="email" class="form-control" name="email" value="<?=inputUsuario("email");?>" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingresar correo" autofocus>
         </div>
         <br>
         <div class="form-group">
