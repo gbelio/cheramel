@@ -25,7 +25,7 @@ if($_POST){
   ?>
   <body class="bodylogin">
     <?php
-      if (count($_COOKIE) > 2){
+      if (count($_COOKIE) > 1){
         $db->restaurarSesion($_COOKIE);
         redirect("index.php");
       }

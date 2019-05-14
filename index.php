@@ -9,7 +9,9 @@ require 'loader.php';
   <body>
     <div class="container-fluid p-0">
       <?php
-        $db->restaurarSesion($_COOKIE);
+        if (count($_COOKIE)>1){
+          $db->restaurarSesion($_COOKIE);
+        }
         if (count($_SESSION) != 0){
           include_once("parts/headerLogOut.php");
         }else{

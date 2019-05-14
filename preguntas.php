@@ -8,7 +8,9 @@ require 'loader.php';
   ?>
   <body class="bodylogin">
     <?php
-      $db->restaurarSesion($_COOKIE);
+      if (count($_COOKIE)>1){
+        $db->restaurarSesion($_COOKIE);
+      }
       if (count($_SESSION) != 0){
         include_once("parts/headerLogOut.php");
       }else{
