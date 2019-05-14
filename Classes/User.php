@@ -8,11 +8,13 @@ class User
     private $nombre;
     private $apellido;
     private $avatar = null;
+    private $recordarme = null;
 
     public function __construct(
         string $email,
         string $password,
         string $repassword = null,
+        string $recordarme = null,
         string $nombre = null,
         string $apellido = null
     )
@@ -20,6 +22,7 @@ class User
         $this->email = $email;
         $this->password = $password;
         $this->repassword = $repassword;
+        $this->recordarme = $recordarme;
         $this->nombre = $nombre;
         $this->apellido = $apellido;
     }
@@ -89,6 +92,18 @@ class User
     public function setRepassword($repassword)
     {
         $this->repassword = $repassword;
+
+        return $this;
+    }
+
+    public function getRecordarme()
+    {
+        return $this->recordarme;
+    }
+ 
+    public function setRecordarme($recordarme)
+    {
+        $this->recordarme = $recordarme;
 
         return $this;
     }

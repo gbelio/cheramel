@@ -8,9 +8,9 @@
         $ext = pathinfo($_SESSION["avatar"],PATHINFO_EXTENSION);
         if($ext == "png" || $ext == "jpg"):
           echo "<div class='avatar' style='background-image: url(imagenes/";?><?=$_SESSION['avatar']?><?=") '></div><br><br>"?>
-          <?php endif; ?>      
+          <?php endif; ?>
       <?php
-        include_once("parts/mostrarErrores.php");       
+        include_once("parts/mostrarErrores.php");
       ?>
     </article>
     <article class="col-12 col-lg-8">

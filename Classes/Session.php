@@ -11,9 +11,9 @@ class Session
         $_SESSION["email"]=$user->getEmail();
         $_SESSION["avatar"]=$user->getAvatar();
         
-        if (isset($datos['recordarme'])){
-            setcookie("password",$datos["passwordLogIn"],time()+3600);
-            setcookie("email",$usuario["email"],time()+3600);
+        if ($user->getRecordarme() != null){
+            setcookie("password",$user->getPassword(),time()+3600);
+            setcookie("email",$user->getEmail(),time()+3600);
         }
     }
 

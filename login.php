@@ -1,7 +1,7 @@
 <?php
 require 'loader.php';
 if($_POST){
-    $user = new User ($_POST['email'],$_POST['passwordLogIn']);
+    $user = new User ($_POST['email'],$_POST['passwordLogIn'],null, $_POST['recordarme']);
     $usuario = $db->buscarEmail($user->getEmail());
     $user->setNombre($usuario['nombre']);
     $user->setApellido($usuario['apellido']);
@@ -25,12 +25,12 @@ if($_POST){
   ?>
   <body class="bodylogin">
     <?php
-      $db->restaurarSesion($_COOKIE);
-      if (count($_COOKIE ) > 2){
-        header("location:index.php");
+      if (count($_COOKIE) > 2){
+        $db->restaurarSesion($_COOKIE);
+        redirect("index.php");
       }
       if (count($_SESSION) != 0) {
-          header("location:perfil.php");
+          redirect("perfil.php");
         }else{
           include_once("parts/header.php");
           include_once("parts/nav.php");

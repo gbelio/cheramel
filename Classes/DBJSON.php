@@ -60,15 +60,19 @@ class DBJSON extends Database
 
     public function restaurarSesion($COOKIE)
     {
+        $user = new User ($COOKIE['email'],$COOKIE['password']);
         if (count($COOKIE) > 1){
             $usuario = $this->buscarEmail($COOKIE["email"]);
-            if($usuario ==null){
+            if($usuario == null){
                 $errores["email"]="Usted no esta registrado";
             }else {
-                if(password_verify($COOKIE["password"],$usuario["password"])===false){
+                $user->setNombre($usuario['nombre']);
+                $user->setApellido($usuario['apellido']);
+                $user->setAvatar($usuario['avatar']);
+                if(Auth::validatePassword($user->getPassword(),$usuario["password"])==false){
                 $errores["password"]= "Datos incorrectos";
                 }else {
-                Session::crearSesion($usuario,$COOKIE);
+                Session::crearSesion($user);
                 }
             }
         }

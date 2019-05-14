@@ -33,7 +33,7 @@ if($_POST){
     <?php
       $db->restaurarSesion($_COOKIE);
       if (count($_SESSION) != 0){
-        header("location:perfil.php");
+        redirect("perfil.php");
       }else{
         include_once("parts/header.php");
         include_once("parts/nav.php");

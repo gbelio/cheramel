@@ -5,6 +5,7 @@ if($_POST){
     $_POST['email'],
     $_POST['password'],
     $_POST['repassword'],
+    $_POST['recordarme'],
     $_POST['nombre'],
     $_POST['apellido']
   );
@@ -28,7 +29,9 @@ if($_POST){
   ?>
   <body>
     <?php
-      $db->restaurarSesion($_COOKIE);
+      if (count($_COOKIE)>1){
+        $db->restaurarSesion($_COOKIE);
+      }
       if (count($_SESSION) != 0){
         include_once("parts/headerLogOut.php");
         include_once("parts/nav.php");
@@ -36,7 +39,7 @@ if($_POST){
         include_once("parts/footer.php");
         include_once("parts/scriptsBootstrap.php");
       }else{
-        header("location:login.php");
+        redirect("login.php");
       }
     ?>
   </body>
