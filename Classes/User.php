@@ -8,7 +8,7 @@ class User
     private $nombre;
     private $apellido;
     private $avatar = null;
-    private $recordarme = null;
+    private $recordarme;
 
     public function __construct(
         string $email,

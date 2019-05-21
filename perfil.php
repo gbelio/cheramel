@@ -17,7 +17,7 @@ if($_POST){
     $user->setPassword($usuario['password']);
     $db->editarUsuario($user,$factory);
     Session::crearSesion($user);
-    sleep(1);
+    sleep(2);
     redirect("perfil.php");
   }
 }
