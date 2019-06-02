@@ -4,11 +4,14 @@ if (count($_SESSION) != 0) {
   redirect("perfil.php");
 }
 if($_POST){
-    $usuario = $db->buscarEmail($_POST["email"]);
-    if($usuario ==null){
+    $user = new User ($_POST['email']);
+    $userFound = MYSQL::searchUserByEmail($pdo, $user);
+    /*$usuario = $db->buscarEmail($_POST["email"]);*/
+    if($userFound == null){
       $errores["email"]="Usted no se encuentra registrado";
     }else{
-      $nuevaPassword = $db->recuperarPassword($_POST["email"]);
+      $newPassword = MYSQL::passwordReset($pdo, $user);
+      /*$nuevaPassword = $db->recuperarPassword($_POST["email"]);*/
       }
     }
 ?>

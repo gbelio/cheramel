@@ -11,8 +11,8 @@
         <br><br>
         <div>
           <?php
-          if (isset($nuevaPassword)){
-            echo "<h5>Su nueva contraseña es: <br>" . $nuevaPassword . "</h5>";
+          if (isset($newPassword)){
+            echo "<h5>Su nueva contraseña es: <br>" . $newPassword . "</h5>";
           }
           ?>
         </div>

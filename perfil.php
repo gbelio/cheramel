@@ -5,19 +5,20 @@ if($_POST){
     $_POST['email'],
     $_POST['password'],
     $_POST['repassword'],
-    $_POST['recordarme'],
+    $_POST['recordarme'] = null,
     $_POST['nombre'],
     $_POST['apellido']
   );
   $validator->trimer($user);
   $errores=$validator->validar($user);
   if (count($errores) == 0){
-    $usuario=$db->buscarEmail($user->getEmail());
-    $user->setAvatar($usuario['avatar']);
-    $user->setPassword($usuario['password']);
-    $db->editarUsuario($user,$factory);
+    $userFound = MYSQL::searchUserByEmail($pdo, $user);
+    $user->setAvatar($userFound['avatar']);
+    $user->setPassword($userFound['password']);
+    $user->setId($userFound['id']);
+    MYSQL::updateUser($pdo, $user);
+    /*$db->editarUsuario($user,$factory);*/
     Session::crearSesion($user);
-    sleep(2);
     redirect("perfil.php");
   }
 }
@@ -30,7 +31,8 @@ if($_POST){
   <body>
     <?php
       if (count($_COOKIE)>1){
-        $db->restaurarSesion($_COOKIE);
+        //$db->restaurarSesion($_COOKIE);
+        MYSQL::restoreSession($pdo);
       }
       if (count($_SESSION) != 0){
         include_once("parts/headerLogOut.php");

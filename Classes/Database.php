@@ -7,7 +7,7 @@ abstract class Database
     abstract public function borrarUsuario();
     abstract public function abrirBaseDatos();
 
-    public function guardarArchivo($imagen, $user)
+    static public function guardarArchivo($imagen, $user)
     {   
         $ext=pathinfo($imagen["avatar"]["name"], PATHINFO_EXTENSION);
         $avatarUsuario = $user->getEmail().".".$ext;

@@ -12,13 +12,14 @@ if($_POST){
   $validator->trimer($user);
   $errores=$validator->validar($user);
   if (count($errores) == 0){
-    $db->guardarArchivo($_FILES, $user);
-    if($db->buscarEmail($user->getEmail()) != null){
+    Database::guardarArchivo($_FILES, $user);
+    if(MYSQL::searchUserByEmail($pdo, $user) != null){
       $errores["email"]="La cuenta <b>".$user->getEmail()."</b> se encuentra registrada.";
     }else{
       $user->setPassword(HashPassword::hash($user->getPassword()));
-      $registro=$factory->armarRegistro($user);
-      $db->guardar($registro);
+      /*$registro=$factory->armarRegistro($user);
+      $db->guardar($registro);*/
+      MYSQL::createUser($pdo, $user);
       redirect("login.php");
       exit;
     }
@@ -33,7 +34,8 @@ if($_POST){
   <body class="bodyregistro" >
     <?php
       if (count($_COOKIE)>1){
-        $db->restaurarSesion($_COOKIE);
+        MYSQL::restoreSession($pdo);
+        /*$db->restaurarSesion($_COOKIE);*/
       }
       if (count($_SESSION) != 0){
         redirect("perfil.php");

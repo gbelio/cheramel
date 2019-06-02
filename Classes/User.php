@@ -2,6 +2,7 @@
 
 class User
 {
+    private $id;
     private $email;
     private $password;
     private $repassword;
@@ -12,7 +13,7 @@ class User
 
     public function __construct(
         string $email,
-        string $password,
+        string $password = null,
         string $repassword = null,
         string $recordarme = null,
         string $nombre = null,
@@ -104,6 +105,18 @@ class User
     public function setRecordarme($recordarme)
     {
         $this->recordarme = $recordarme;
+
+        return $this;
+    }
+
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function setId($id)
+    {
+        $this->id = $id;
 
         return $this;
     }
