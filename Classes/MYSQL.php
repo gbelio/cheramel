@@ -11,6 +11,7 @@ class MYSQL extends Database{
             exit;
         }
     }
+
     static public function searchUserByEmail($pdo,User $user) {
         $sql = "select * from users where email like :email";
         $query = $pdo->prepare($sql);
