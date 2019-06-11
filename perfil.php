@@ -5,7 +5,6 @@ if($_POST){
     $_POST['email'],
     $_POST['password'],
     $_POST['repassword'],
-    $_POST['recordarme'] = null,
     $_POST['nombre'],
     $_POST['apellido']
   );

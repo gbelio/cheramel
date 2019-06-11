@@ -1,7 +1,7 @@
 <?php
 require 'loader.php';
 if($_POST){
-    $user = new User ($_POST['email'],$_POST['passwordLogIn'],null, $_POST['recordarme']);
+    $user = new User ($_POST['email'],$_POST['passwordLogIn'],null);
     $userFound = MYSQL::searchUserByEmail($pdo, $user);
     /*$usuario = $db->buscarEmail($user->getEmail());*/
     $user->setNombre($userFound['first_name']);

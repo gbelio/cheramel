@@ -11,7 +11,7 @@ class Session
         $_SESSION["email"]=$user->getEmail();
         $_SESSION["avatar"]=$user->getAvatar();
         
-        if ($user->getRecordarme() != null){
+        if (isset($_POST['recordarme'])){
             setcookie("password",$user->getPassword(),time()+3600);
             setcookie("email",$user->getEmail(),time()+3600);
         }
