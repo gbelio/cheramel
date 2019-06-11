@@ -87,7 +87,6 @@ class MYSQL extends Database{
                 MYSQL::updateUser($pdo,$user);
                 return $randomPassword;
             }
-            
         }
         
     public function editarUsuario(User $user, UserFactory $factory){
@@ -102,6 +101,16 @@ class MYSQL extends Database{
     }
     public function guardar(array $usuarioArray){
 
+    }
+
+    public function imgInsert(User $user, UserFactory $factory){
+        $sql = "insert into products (name, category_id, price, image) values (:name, :category_id, :price, :image)";
+        $query = $pdo->prepare($sql);
+        $query->bindValue(':name','Sillón');
+        $query->bindValue(':category_id','1');
+        $query->bindValue(':price','1000');
+        $query->bindValue(':image','');
+        $query->execute();
     }
 
 }

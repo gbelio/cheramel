@@ -9,7 +9,7 @@ require 'loader.php';
   <body>
     <div class="container-fluid p-0">
       <?php
-        if (count($_COOKIE)>1){
+        if (isset($_COOKIE['email'])){
           MYSQL::restoreSession($pdo);
           /*$db->restaurarSesion($_COOKIE);*/
         }

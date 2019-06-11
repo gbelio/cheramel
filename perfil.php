@@ -30,7 +30,7 @@ if($_POST){
   ?>
   <body>
     <?php
-      if (count($_COOKIE)>1){
+      if (isset($_COOKIE['email'])){
         //$db->restaurarSesion($_COOKIE);
         MYSQL::restoreSession($pdo);
       }

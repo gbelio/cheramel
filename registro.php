@@ -33,7 +33,7 @@ if($_POST){
   ?>
   <body class="bodyregistro" >
     <?php
-      if (count($_COOKIE)>1){
+      if (isset($_COOKIE['email'])){
         MYSQL::restoreSession($pdo);
         /*$db->restaurarSesion($_COOKIE);*/
       }

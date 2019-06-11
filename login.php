@@ -26,7 +26,7 @@ if($_POST){
   ?>
   <body class="bodylogin">
     <?php
-      if (count($_COOKIE) > 1){
+      if (isset($_COOKIE['email'])){
         /*$db->restaurarSesion($_COOKIE);*/
         MYSQL::restoreSession($pdo);
         redirect("index.php");

@@ -1,7 +1,7 @@
 <section class="__wrapper-carousel">
   <div id="carouselExampleControls" class="carousel slide carousel-fade" data-ride="carousel">
     <div class="carousel-inner">
-      <div class="carousel-item active slide1">            
+      <div class="carousel-item active slide1">
         <div class="__text-combo __light">
           <h3>Bienvenidos</h3>
           <p>Cheramel by Santino</p>

@@ -8,7 +8,7 @@ require 'loader.php';
   ?>
   <body class="bodylogin">
     <?php
-      if (count($_COOKIE)>1){
+      if (isset($_COOKIE['email'])){
         MYSQL::restoreSession($pdo);
         /*$db->restaurarSesion($_COOKIE);*/
       }
